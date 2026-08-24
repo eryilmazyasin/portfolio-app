@@ -54,6 +54,7 @@ export async function generateMetadata({
   const { locale: routeLocale } = await params
   const locale = isSupportedLocale(routeLocale) ? routeLocale : "en"
   const content = SEO_CONTENT[locale]
+  const socialImageUrl = `/${locale}/opengraph-image`
 
   return {
     metadataBase: new URL(BASE_URL),
@@ -71,11 +72,26 @@ export async function generateMetadata({
       siteName: "Yasin Eryılmaz Portfolio",
       title: content.title,
       description: content.description,
+      // Mutlak URL metadataBase üzerinden çözülür; WhatsApp gibi scraper'lar banner rotasını doğrudan okuyabilir.
+      images: [
+        {
+          url: socialImageUrl,
+          width: 1200,
+          height: 630,
+          alt: "Yasin Eryılmaz — Frontend & Full-Stack Developer",
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: content.title,
       description: content.description,
+      images: [
+        {
+          url: socialImageUrl,
+          alt: "Yasin Eryılmaz — Frontend & Full-Stack Developer",
+        },
+      ],
     },
     alternates: {
       canonical: `/${locale}`,
