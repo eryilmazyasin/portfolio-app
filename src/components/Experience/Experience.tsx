@@ -142,7 +142,7 @@ export function Experience({ experiences, locale }: ExperienceProps) {
                     <div className="flex flex-wrap gap-2">
                       {technologies.map((technology) => (
                         <Badge
-                          className="h-7 rounded-md border-zinc-300/70 bg-zinc-100/70 px-2.5 font-mono text-xs font-medium text-zinc-700 backdrop-blur-sm dark:border-zinc-700/60 dark:bg-zinc-800/60 dark:text-zinc-300"
+                          className="h-7 rounded-md border-sky-200/80 bg-sky-50/70 px-2.5 font-mono text-xs font-medium text-sky-800 shadow-sm backdrop-blur-sm transition-all duration-200 hover:scale-105 hover:border-sky-300 hover:bg-sky-100/80 hover:shadow-[0_0_16px_rgba(14,165,233,0.18)] dark:border-sky-500/20 dark:bg-sky-500/[0.07] dark:text-sky-200 dark:hover:border-sky-400/40 dark:hover:bg-sky-500/15 dark:hover:shadow-[0_0_18px_rgba(56,189,248,0.14)] motion-reduce:transform-none"
                           key={technology}
                           variant="outline"
                         >
