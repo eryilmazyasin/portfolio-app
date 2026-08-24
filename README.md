@@ -54,3 +54,79 @@ A high-performance, containerized, and multilingual developer portfolio platform
 ├── components.json       # UI component registry configuration
 └── next.config.ts        # Next.js standalone and compiler configuration
 ```
+
+---
+
+## 🚦 Getting Started
+
+### 1. Clone the Repository
+
+```bash
+git clone [https://github.com/eryilmazyasin/portfolio-app.git](https://github.com/eryilmazyasin/portfolio-app.git)
+cd portfolio-app
+```
+
+### 2. Configure Environment Variables
+
+Copy the example environment file:
+
+```bash
+cp .env.example .env
+```
+
+Set your configuration in `.env`:
+
+```env
+# Database Connection (Neon Serverless Postgres or Local Docker)
+DATABASE_URL="postgresql://user:password@host/dbname?sslmode=require"
+
+# Upstash Redis (For Distributed Rate Limiting & API Caching)
+UPSTASH_REDIS_REST_URL="[https://your-upstash-instance.upstash.io](https://your-upstash-instance.upstash.io)"
+UPSTASH_REDIS_REST_TOKEN="your_upstash_rest_token"
+
+# GitHub Personal Access Token (For Activity Metrics)
+GITHUB_TOKEN="your_github_token"
+```
+
+### 3. Install Dependencies
+
+```bash
+npm install
+```
+
+### 4. Database Setup & Seeding
+
+```bash
+# Push schema changes to the database
+npm run db:push
+
+# Populate database with initial projects, skills, and experiences
+npm run db:seed
+
+# Launch visual database management interface
+npx drizzle-kit studio
+```
+
+### 5. Start Development Server
+
+```bash
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+---
+
+## 🐳 Docker Deployment
+
+Run the complete multi-container stack locally with Docker Compose:
+
+```bash
+docker compose up --build -d
+```
+
+---
+
+## 📜 License
+
+This project is open-source and available under the [MIT License](LICENSE).
