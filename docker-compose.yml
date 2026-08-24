@@ -1,5 +1,6 @@
+# [ÖĞRENME NOTU]: Tüm servislerimizi tek bir komutla orkestre ettiğimiz ana yapılandırma.
 services:
-  # 1. Next.js Web Uygulaması
+  # 1. Next.js Uygulaması
   app:
     build:
       context: .
@@ -15,9 +16,10 @@ services:
       redis:
         condition: service_started
     networks:
-      - portfolio_net
+      - portfolio_net # Servisleri aynı sanal ağa dahil ediyoruz.
 
-  # 2. Nginx Reverse Proxy
+  # 2. Nginx (Reverse Proxy)
+  # [ÖĞRENME NOTU]: Dış dünyadan (80 portu) gelen istekleri karşılayıp 'app' servisine iletir.
   nginx:
     image: nginx:alpine
     restart: always
@@ -41,8 +43,10 @@ services:
     ports:
       - "5432:5432"
     volumes:
+      # [ÖĞRENME NOTU]: Konteyner silinse bile veritabanı verilerimizin kaybolmaması için kalıcı Volume kullanıyoruz.
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
+      # [ÖĞRENME NOTU]: DB'nin tam olarak ayağa kalkıp kalkmadığını kontrol eder, 'app' servisi bunu bekler.
       test: ["CMD-SHELL", "pg_isready -U postgres -d portfolio_db"]
       interval: 5s
       timeout: 5s
@@ -50,7 +54,7 @@ services:
     networks:
       - portfolio_net
 
-  # 4. Redis In-Memory Cache
+  # 4. Redis (Cache)
   redis:
     image: redis:alpine
     restart: always
