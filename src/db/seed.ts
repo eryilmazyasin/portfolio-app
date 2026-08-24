@@ -4,7 +4,13 @@ import { experiences, projects, skills } from './schema';
 async function main() {
   console.log("🌱 Starting database seeding...");
 
-  // 1. SKILLS (Yetenekler tablosunu doldurma)
+  // Var olan kayıtları temizle (çift kayıt hatasını önler)
+  console.log("-> Cleaning old records...");
+  await db.delete(projects);
+  await db.delete(experiences);
+  await db.delete(skills);
+
+  // 1. SKILLS
   console.log("-> Inserting skills...");
   await db.insert(skills).values([
     // Frontend
@@ -103,7 +109,7 @@ async function main() {
     },
   ]);
 
-  // 2. PROJECTS (Projeler tablosunu doldurma - TR/EN destekli)
+  // 2. PROJECTS
   console.log("-> Inserting projects...");
   await db.insert(projects).values([
     {
@@ -161,7 +167,7 @@ async function main() {
     },
   ]);
 
-  // 3. EXPERIENCES (Deneyimler tablosunu doldurma)
+  // 3. EXPERIENCES
   console.log("-> Inserting experiences...");
   await db.insert(experiences).values([
     {
