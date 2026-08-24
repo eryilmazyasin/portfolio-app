@@ -1,31 +1,31 @@
-"use client"
+"use client";
 
-import { useActionState, useEffect, useRef } from "react"
-import { CircleCheck, LoaderCircle, Send, TriangleAlert } from "lucide-react"
-import { useTranslations } from "next-intl"
+import { useActionState, useEffect, useRef } from 'react';
 
-import { submitContactForm } from "@/actions/contact"
-import type { ContactActionResult } from "@/actions/contact.types"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
+import { submitContactForm } from '@/actions/contact';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { CircleCheck, LoaderCircle, Send, TriangleAlert } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
-const initialState: ContactActionResult | null = null
+import type { ContactActionResult } from "@/actions/contact.types";
+const initialState: ContactActionResult | null = null;
 
 export function ContactForm() {
-  const t = useTranslations("Contact")
-  const formRef = useRef<HTMLFormElement>(null)
+  const t = useTranslations("Contact");
+  const formRef = useRef<HTMLFormElement>(null);
   const [state, formAction, isPending] = useActionState(
     submitContactForm,
-    initialState
-  )
+    initialState,
+  );
 
   // Başarılı kayıt sonrasında uncontrolled form alanlarını DOM form API'siyle temizler.
   useEffect(() => {
     if (state?.success) {
-      formRef.current?.reset()
+      formRef.current?.reset();
     }
-  }, [state])
+  }, [state]);
 
   return (
     <form
@@ -33,9 +33,16 @@ export function ContactForm() {
       className="mt-12 space-y-5 text-left"
       ref={formRef}
     >
+      {/* Bot Tuzağı: Kullanıcı görmez, botlar doldurursa Action DB'ye kaydetmeden başarılı döner */}
+      <div className="hidden" aria-hidden="true">
+        <input type="text" name="botField" tabIndex={-1} autoComplete="off" />
+      </div>
       <div className="grid gap-5 sm:grid-cols-2">
         <div className="space-y-2">
-          <label className="text-sm font-medium text-slate-700 dark:text-slate-300" htmlFor="name">
+          <label
+            className="text-sm font-medium text-slate-700 dark:text-slate-300"
+            htmlFor="name"
+          >
             {t("nameLabel")}
           </label>
           <Input
@@ -51,7 +58,10 @@ export function ContactForm() {
         </div>
 
         <div className="space-y-2">
-          <label className="text-sm font-medium text-slate-700 dark:text-slate-300" htmlFor="email">
+          <label
+            className="text-sm font-medium text-slate-700 dark:text-slate-300"
+            htmlFor="email"
+          >
             {t("emailLabel")}
           </label>
           <Input
@@ -68,7 +78,10 @@ export function ContactForm() {
       </div>
 
       <div className="space-y-2">
-        <label className="text-sm font-medium text-slate-700 dark:text-slate-300" htmlFor="subject">
+        <label
+          className="text-sm font-medium text-slate-700 dark:text-slate-300"
+          htmlFor="subject"
+        >
           {t("subjectLabel")}
         </label>
         <Input
@@ -83,7 +96,10 @@ export function ContactForm() {
       </div>
 
       <div className="space-y-2">
-        <label className="text-sm font-medium text-slate-700 dark:text-slate-300" htmlFor="message">
+        <label
+          className="text-sm font-medium text-slate-700 dark:text-slate-300"
+          htmlFor="message"
+        >
           {t("messageLabel")}
         </label>
         <Textarea
@@ -128,5 +144,5 @@ export function ContactForm() {
         {isPending ? t("submitting") : t("submitBtn")}
       </Button>
     </form>
-  )
+  );
 }
