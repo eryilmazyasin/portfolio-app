@@ -43,3 +43,8 @@ next-env.d.ts
 # Docker Volumes
 postgres_data/
 redis_data/
+
+# AI Context & Agent Configuration
+AGENTS.md
+CLAUDE.md
+context.md
