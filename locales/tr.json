@@ -30,6 +30,18 @@
     "explore": "Keşfet",
     "scrollLabel": "Sonraki bölüme kaydır"
   },
+  "GithubStats": {
+    "liveProfile": "Canlı GitHub profili",
+    "repositories": "Repo",
+    "followers": "Takipçi",
+    "profileLabel": "{username} GitHub profilini aç"
+  },
+  "LiveStatusBadge": {
+    "activeStatus": "Aktif olarak geliştiriyor ve katkı sağlıyor",
+    "contributions": "Bu yıl {count}+ katkı",
+    "repositories": "{count} public repository",
+    "profileLabel": "{username} canlı GitHub aktivitesini aç"
+  },
   "Skills": {
     "sectionTitle": "Uzmanlık Alanları",
     "title": "Yetenekler",

@@ -30,6 +30,18 @@
     "explore": "Explore",
     "scrollLabel": "Scroll to the next section"
   },
+  "GithubStats": {
+    "liveProfile": "Live GitHub profile",
+    "repositories": "Repositories",
+    "followers": "Followers",
+    "profileLabel": "Open {username}'s GitHub profile"
+  },
+  "LiveStatusBadge": {
+    "activeStatus": "Actively building & contributing",
+    "contributions": "{count}+ contributions this year",
+    "repositories": "{count} public repositories",
+    "profileLabel": "Open {username}'s live GitHub activity"
+  },
   "Skills": {
     "sectionTitle": "Areas of Expertise",
     "title": "Skills",

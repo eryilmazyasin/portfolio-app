@@ -1,48 +1,190 @@
-import Redis from 'ioredis';
+import { Redis } from '@upstash/redis';
 
-// Sadece REDIS_URL varsa Redis'i ayağa kaldır, yoksa null dön (localhost'a asla düşme!)
-const redisUrl = process.env.REDIS_URL;
-const redis = redisUrl
-  ? new Redis(redisUrl, { maxRetriesPerRequest: 1 })
-  : null;
+// Vercel / Upstash REST istemcisi (Serverless ortamlar için en stabil yöntem)
+const redis =
+  process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN
+    ? Redis.fromEnv()
+    : null;
 
-export async function getGithubProfile() {
-  const cacheKey = "github_profile";
+export interface GitHubProfile {
+  name: string;
+  login: string;
+  avatar_url: string;
+  html_url: string;
+  public_repos: number;
+  followers: number;
+  bio: string;
+}
 
-  // 1. Eğer Redis aktifse cache'e bak
-  if (redis) {
-    try {
-      const cachedData = await redis.get(cacheKey);
-      if (cachedData) {
-        return JSON.parse(cachedData);
+export interface GitHubActivitySummary {
+  login: string;
+  profileUrl: string;
+  totalContributions: number;
+  totalRepositories: number;
+}
+
+interface GitHubActivityGraphQLResponse {
+  data?: {
+    viewer: {
+      login: string;
+      url: string;
+      contributionsCollection: {
+        contributionCalendar: {
+          totalContributions: number;
+        };
+      };
+      repositories: {
+        totalCount: number;
+      };
+    };
+  };
+  errors?: Array<{ message: string }>;
+}
+
+const GITHUB_ACTIVITY_QUERY = `
+  query ViewerActivitySummary($from: DateTime!) {
+    viewer {
+      login
+      url
+      contributionsCollection(from: $from) {
+        contributionCalendar {
+          totalContributions
+        }
       }
-    } catch (err) {
-      console.warn("Redis okuma hatası:", err);
+      repositories(privacy: PUBLIC) {
+        totalCount
+      }
     }
   }
+`;
 
-  // 2. Cache yoksa veya Redis yok direkt GitHub API'ye git
-  const response = await fetch("https://api.github.com/user", {
-    headers: {
-      Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
-    },
-    next: { revalidate: 3600 },
-  });
+export async function getGithubProfile(): Promise<GitHubProfile | null> {
+  const cacheKey = "github_profile_data";
 
-  if (!response.ok) {
-    throw new Error("GitHub verisi çekilemedi");
-  }
-
-  const data = await response.json();
-
-  // 3. Redis aktifse cache'e yaz
+  // 1. Redis Cache Kontrolü (Varsa doğrudan cache'ten dön)
   if (redis) {
     try {
-      await redis.set(cacheKey, JSON.stringify(data), "EX", 3600);
+      const cached = await redis.get<GitHubProfile>(cacheKey);
+      if (cached) return cached;
     } catch (err) {
-      console.warn("Redis yazma hatası:", err);
+      console.warn("Upstash Redis read error:", err);
     }
   }
 
-  return data;
+  // 2. GitHub API İsteği
+  try {
+    const token = process.env.GITHUB_TOKEN;
+    const response = await fetch("https://api.github.com/user", {
+      headers: {
+        Accept: "application/vnd.github+json",
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      },
+      next: { revalidate: 3600 }, // ⏱️ Next.js ISR: 1 saatlik fallback önbellek
+    });
+
+    if (!response.ok) {
+      console.error("Failed to fetch GitHub profile:", response.statusText);
+      return null;
+    }
+
+    const data: GitHubProfile = await response.json();
+
+    // 3. Redis Cache Yazma (TTL: 1 Saat / 3600 saniye)
+    if (redis) {
+      try {
+        await redis.set(cacheKey, data, { ex: 3600 });
+      } catch (err) {
+        console.warn("Upstash Redis write error:", err);
+      }
+    }
+
+    return data;
+  } catch (error) {
+    console.error("GitHub profile fetch error:", error);
+    return null;
+  }
+}
+
+export async function getGithubActivitySummary(): Promise<GitHubActivitySummary | null> {
+  const cacheKey = "github_account_activity_summary";
+
+  // Redis katmanı GitHub API çağrısını azaltır ve serverless instance'lar arasında ortak bir saatlik cache sağlar.
+  if (redis) {
+    try {
+      const cached = await redis.get<GitHubActivitySummary>(cacheKey);
+      if (cached) return cached;
+    } catch (error) {
+      console.warn("Upstash Redis activity read error:", error);
+    }
+  }
+
+  const token = process.env.GITHUB_TOKEN;
+
+  if (!token) {
+    console.error("GitHub token is not configured.");
+    return null;
+  }
+
+  try {
+    // GraphQL viewer sorgusu belirli bir repoya bağlanmadan hesap genelindeki katkı ve repository toplamlarını döndürür.
+    const currentYearStart = `${new Date().getUTCFullYear()}-01-01T00:00:00.000Z`;
+    const response = await fetch("https://api.github.com/graphql", {
+      method: "POST",
+      headers: {
+        Accept: "application/vnd.github+json",
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      // Yıl başlangıcı sabit kaldığı için Next.js fetch cache anahtarı aynı takvim yılı boyunca değişmez.
+      body: JSON.stringify({
+        query: GITHUB_ACTIVITY_QUERY,
+        variables: { from: currentYearStart },
+      }),
+      next: { revalidate: 3600 },
+    });
+
+    if (!response.ok) {
+      console.error(
+        "Failed to fetch GitHub activity summary:",
+        response.status,
+        response.statusText
+      );
+      return null;
+    }
+
+    const result =
+      (await response.json()) as GitHubActivityGraphQLResponse;
+
+    // GraphQL HTTP 200 döndürse bile errors alanı içerebildiği için uygulama verisini ayrıca doğruluyoruz.
+    if (result.errors?.length || !result.data?.viewer) {
+      console.error(
+        "GitHub GraphQL activity query failed:",
+        result.errors ?? "Missing viewer data"
+      );
+      return null;
+    }
+
+    const { viewer } = result.data;
+    const summary: GitHubActivitySummary = {
+      login: viewer.login,
+      profileUrl: viewer.url,
+      totalContributions:
+        viewer.contributionsCollection.contributionCalendar.totalContributions,
+      totalRepositories: viewer.repositories.totalCount,
+    };
+
+    if (redis) {
+      try {
+        // ex değeri cache kaydını 3600 saniye sonra otomatik olarak geçersiz kılar.
+        await redis.set(cacheKey, summary, { ex: 3600 });
+      } catch (error) {
+        console.warn("Upstash Redis activity write error:", error);
+      }
+    }
+
+    return summary;
+  } catch (error) {
+    console.error("GitHub activity summary fetch error:", error);
+    return null;
+  }
 }

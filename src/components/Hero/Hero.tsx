@@ -1,6 +1,9 @@
+import { Suspense } from "react"
 import Link from "next/link"
 import { ArrowDown, ArrowUpRight, Code2 } from "lucide-react"
 import { useTranslations } from "next-intl"
+
+import { LiveStatusBadge } from "@/components/home/LiveStatusBadge"
 
 export function Hero() {
   const t = useTranslations("Hero")
@@ -62,6 +65,11 @@ export function Hero() {
               </Link>
             </div>
           </div>
+
+          {/* GitHub GraphQL isteği ayrı aktığı için Hero metni uzak API yanıtını beklemeden görüntülenebilir. */}
+          <Suspense fallback={null}>
+            <LiveStatusBadge />
+          </Suspense>
         </div>
 
         <div className="mt-16 flex items-center justify-between border-t border-slate-200/80 pt-5 text-xs font-medium uppercase tracking-[0.16em] text-slate-400 dark:border-white/10 dark:text-slate-500 sm:mt-24">
