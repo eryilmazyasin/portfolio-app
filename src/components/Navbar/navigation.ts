@@ -1,5 +1,5 @@
 export const navigationItems = [
-  { label: "Yetenekler", href: "#skills" },
-  { label: "Deneyim", href: "#experience" },
-  { label: "Projeler", href: "#projects" },
+  { key: "skills", href: "#skills" },
+  { key: "experience", href: "#experience" },
+  { key: "projects", href: "#projects" },
 ] as const

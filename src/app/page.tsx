@@ -7,7 +7,7 @@ import { Skills } from "@/components/Skills/Skills"
 
 export default function Home() {
   return (
-    <div className="min-h-svh bg-slate-50 text-slate-950">
+    <div className="min-h-svh bg-slate-50 text-slate-950 dark:bg-slate-950 dark:text-slate-50">
       <Navbar />
       <main>
         <Hero />
@@ -15,8 +15,6 @@ export default function Home() {
         <Experience />
         <Projects />
         <Contact />
-
-        <section aria-label="Hakkımda" className="sr-only" id="about" />
       </main>
     </div>
   )

@@ -1,0 +1,92 @@
+{
+  "LanguageSwitcher": {
+    "switchTo": "Dili {locale} olarak değiştir"
+  },
+  "ThemeToggle": {
+    "toggle": "Renk temasını değiştir"
+  },
+  "Navbar": {
+    "about": "Hakkımda",
+    "skills": "Yetenekler",
+    "experience": "Deneyim",
+    "projects": "Projeler",
+    "contact": "İletişime geç",
+    "homeLabel": "Ana bölüme git",
+    "role": "Frontend · Full Stack",
+    "mainNavigationLabel": "Ana navigasyon",
+    "openMenu": "Menüyü aç",
+    "navigationTitle": "Navigasyon",
+    "navigationDescription": "Portfolyo bölümlerini keşfedin.",
+    "mobileNavigationLabel": "Mobil navigasyon"
+  },
+  "Hero": {
+    "badge": "Yeni projeler için müsait",
+    "title": "6+ yıllık deneyimle, ölçeklenen dijital ürünler geliştiriyorum.",
+    "description": "Frontend ve Full-Stack geliştirici olarak; Next.js, Node.js, PostgreSQL ve Docker ile ürünleri ilk kurulumdan production dağıtımına kadar uçtan uca hayata geçiriyorum. Teslimat odaklı, analitik yaklaşımımla temiz, ölçeklenebilir ve performanslı deneyimler üretiyorum.",
+    "ctaProjects": "Projeleri incele",
+    "ctaAbout": "Hakkımda",
+    "ctaSkills": "Yeteneklerim",
+    "location": "İstanbul, Türkiye",
+    "explore": "Keşfet",
+    "scrollLabel": "Sonraki bölüme kaydır"
+  },
+  "Skills": {
+    "sectionTitle": "Uzmanlık Alanları",
+    "title": "Yetenekler",
+    "description": "Modern frontend mimarilerinden backend servislerine ve production altyapısına kadar ürünün tüm yaşam döngüsünde kullandığım teknoloji seti.",
+    "frontendTitle": "Frontend",
+    "frontendDesc": "Hızlı, erişilebilir ve ölçeklenebilir ürün arayüzleri.",
+    "stateTitle": "State & Data",
+    "stateDesc": "Öngörülebilir durum yönetimi ve güvenilir veri akışları.",
+    "backendTitle": "Backend & DevOps",
+    "backendDesc": "Uçtan uca geliştirme, altyapı ve production teslimatı."
+  },
+  "Experience": {
+    "sectionTitle": "Kariyer Yolculuğu",
+    "title": "Deneyim",
+    "description": "Ürün geliştirme, e-ticaret ve kurumsal projelerde; fikir aşamasından production teslimatına uzanan 6+ yıllık deneyim.",
+    "present": "Günümüz",
+    "metusRole": "Frontend Developer",
+    "metusPeriod": "Ağustos 2021 — Günümüz",
+    "metusDescription": "React.js ile Metance ürününü, Next.js ile yüksek performanslı landing page'leri geliştiriyorum; TypeScript, TanStack Query ve SignalR ile sürdürülebilir ürün deneyimleri oluşturuyorum.",
+    "freelanceRole": "Full Stack Developer",
+    "freelancePeriod": "2023 — Günümüz",
+    "freelanceDescription": "Otel yönetim otomasyonu için frontend ve backend mimarisini uçtan uca geliştiriyor; operasyonel ihtiyaçları güvenilir ve ölçeklenebilir ürün akışlarına dönüştürüyorum.",
+    "previousRole": "Frontend Developer",
+    "previousPeriod": "Önceki deneyim · Toplam 2,5+ yıl",
+    "previousDescription": "E-ticaret ürünleri ve kurumsal web projeleri için yeniden kullanılabilir, ölçeklenebilir ve kullanıcı odaklı arayüz mimarileri geliştirdim.",
+    "itemLabel": "Deneyim {number}"
+  },
+  "Projects": {
+    "sectionTitle": "Seçilmiş Çalışmalar",
+    "title": "Projeler",
+    "description": "Ürün ihtiyaçlarını sürdürülebilir frontend mimarileri, güvenilir backend servisleri ve production odaklı altyapılarla buluşturan seçilmiş projeler.",
+    "easyJotDescription": "Next.js, Node.js, Drizzle ORM, Redis ve Docker kullanılarak geliştirilen, konteyner mimarisine sahip full-stack uygulama.",
+    "hotelDescription": "Oteller için React (TypeScript) ve Node.js tabanlı, uçtan uca rezervasyon ve operasyon yönetim sistemi.",
+    "techStack": "Teknoloji seti",
+    "github": "GitHub",
+    "liveDemo": "Canlı Demo",
+    "githubSoon": "GitHub bağlantısı yakında",
+    "liveDemoSoon": "Canlı demo bağlantısı yakında",
+    "githubAria": "{project} GitHub bağlantısı yakında",
+    "liveDemoAria": "{project} canlı demo bağlantısı yakında"
+  },
+  "Contact": {
+    "eyebrow": "Birlikte çalışalım",
+    "title": "İletişime Geç",
+    "subtitle": "Yeni bir ürün, mevcut bir sistemi ölçeklendirme veya teknik iş birliği için projenizi paylaşın. En kısa sürede dönüş yapacağım.",
+    "nameLabel": "İsim",
+    "emailLabel": "E-posta",
+    "messageLabel": "Mesaj",
+    "namePlaceholder": "Adınız ve soyadınız",
+    "emailPlaceholder": "ornek@email.com",
+    "messagePlaceholder": "Projenizden ve birlikte nasıl çalışabileceğimizden bahsedin.",
+    "submitBtn": "Mesaj Gönder",
+    "rights": "Tüm hakları saklıdır.",
+    "copyright": "© 2026 Yasin Eryılmaz. Tüm hakları saklıdır.",
+    "socialNavigationLabel": "Sosyal medya bağlantıları",
+    "backToTop": "Başa dön",
+    "emailSubject": "Portfolyo iletişim — {name}",
+    "emailBody": "İsim: {name}\nE-posta: {email}\n\nMesaj:\n{message}"
+  }
+}

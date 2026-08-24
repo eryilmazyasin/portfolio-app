@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { ArrowUpRight, Menu } from "lucide-react"
+import { useTranslations } from "next-intl"
 
 import { navigationItems } from "@/components/Navbar/navigation"
 import { Button } from "@/components/ui/button"
@@ -16,13 +17,15 @@ import {
 } from "@/components/ui/sheet"
 
 export function MobileNavigation() {
+  const t = useTranslations("Navbar")
+
   return (
     <Sheet>
       <SheetTrigger
         render={
           <Button
-            aria-label="Menüyü aç"
-            className="rounded-full border-white/70 bg-white/70 shadow-sm backdrop-blur-xl md:hidden"
+            aria-label={t("openMenu")}
+            className="rounded-full border-white/70 bg-white/70 text-slate-700 shadow-sm backdrop-blur-xl dark:border-white/10 dark:bg-slate-900/75 dark:text-slate-300 dark:hover:bg-slate-800 md:hidden"
             size="icon-lg"
             variant="outline"
           />
@@ -31,39 +34,41 @@ export function MobileNavigation() {
         <Menu aria-hidden="true" />
       </SheetTrigger>
 
-      <SheetContent className="w-[min(88vw,22rem)] border-l-slate-200/80 bg-white/95 p-2 backdrop-blur-2xl">
-        <SheetHeader className="border-b border-slate-200/80 px-4 py-5">
+      <SheetContent className="w-[min(88vw,22rem)] border-l-slate-200/80 bg-white/95 p-2 backdrop-blur-2xl dark:border-l-white/10 dark:bg-slate-950/95">
+        <SheetHeader className="border-b border-slate-200/80 px-4 py-5 dark:border-white/10">
           <SheetTitle className="text-lg font-semibold tracking-tight">
-            Navigasyon
+            {t("navigationTitle")}
           </SheetTitle>
-          <SheetDescription>Portfolyo bölümlerini keşfedin.</SheetDescription>
+          <SheetDescription>{t("navigationDescription")}</SheetDescription>
         </SheetHeader>
 
-        <nav aria-label="Mobil navigasyon" className="flex flex-col gap-1 p-2">
+        <nav aria-label={t("mobileNavigationLabel")} className="flex flex-col gap-1 p-2">
           {navigationItems.map((item) => (
             <SheetClose
               key={item.href}
+              nativeButton={false}
               render={
                 <Link
-                  className="flex items-center justify-between rounded-xl px-3 py-3 text-base font-medium text-slate-700 transition-colors hover:bg-slate-100 hover:text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400"
+                  className="flex items-center justify-between rounded-xl px-3 py-3 text-base font-medium text-slate-700 transition-colors hover:bg-slate-100 hover:text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 dark:text-slate-300 dark:hover:bg-white/10 dark:hover:text-white"
                   href={item.href}
                 />
               }
             >
-              {item.label}
+              {t(item.key)}
               <ArrowUpRight aria-hidden="true" className="size-4" />
             </SheetClose>
           ))}
 
           <SheetClose
+            nativeButton={false}
             render={
               <Link
-                className="mt-3 inline-flex h-11 items-center justify-center rounded-xl bg-slate-950 px-5 text-sm font-medium text-white transition-colors hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-2"
+                className="mt-3 inline-flex h-11 items-center justify-center rounded-xl bg-slate-950 px-5 text-sm font-medium text-white transition-colors hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-2 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200 dark:focus-visible:ring-offset-slate-950"
                 href="#contact"
               />
             }
           >
-            İletişime geç
+            {t("contact")}
           </SheetClose>
         </nav>
       </SheetContent>

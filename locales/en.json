@@ -1,0 +1,92 @@
+{
+  "LanguageSwitcher": {
+    "switchTo": "Switch language to {locale}"
+  },
+  "ThemeToggle": {
+    "toggle": "Toggle color theme"
+  },
+  "Navbar": {
+    "about": "About",
+    "skills": "Skills",
+    "experience": "Experience",
+    "projects": "Projects",
+    "contact": "Get in touch",
+    "homeLabel": "Go to the home section",
+    "role": "Frontend · Full Stack",
+    "mainNavigationLabel": "Main navigation",
+    "openMenu": "Open menu",
+    "navigationTitle": "Navigation",
+    "navigationDescription": "Explore the portfolio sections.",
+    "mobileNavigationLabel": "Mobile navigation"
+  },
+  "Hero": {
+    "badge": "Available for new projects",
+    "title": "Building scalable digital products with 6+ years of experience.",
+    "description": "As a Frontend and Full-Stack developer, I bring products to life end-to-end—from initial setup to production deployment—using Next.js, Node.js, PostgreSQL, and Docker. With a delivery-focused, analytical mindset, I create clean, scalable, and high-performance experiences.",
+    "ctaProjects": "Explore Projects",
+    "ctaAbout": "About Me",
+    "ctaSkills": "My Skills",
+    "location": "Istanbul, Turkey",
+    "explore": "Explore",
+    "scrollLabel": "Scroll to the next section"
+  },
+  "Skills": {
+    "sectionTitle": "Areas of Expertise",
+    "title": "Skills",
+    "description": "The technology stack I use across the entire product lifecycle, from modern frontend architectures to backend services and production infrastructure.",
+    "frontendTitle": "Frontend",
+    "frontendDesc": "Fast, accessible, and scalable product interfaces.",
+    "stateTitle": "State & Data",
+    "stateDesc": "Predictable state management and reliable data flows.",
+    "backendTitle": "Backend & DevOps",
+    "backendDesc": "End-to-end development, infrastructure, and production delivery."
+  },
+  "Experience": {
+    "sectionTitle": "Career Journey",
+    "title": "Experience",
+    "description": "6+ years of experience across product development, e-commerce, and enterprise projects, from ideation to production delivery.",
+    "present": "Present",
+    "metusRole": "Frontend Developer",
+    "metusPeriod": "August 2021 — Present",
+    "metusDescription": "I build the Metance product with React.js and high-performance landing pages with Next.js, creating sustainable product experiences with TypeScript, TanStack Query, and SignalR.",
+    "freelanceRole": "Full Stack Developer",
+    "freelancePeriod": "2023 — Present",
+    "freelanceDescription": "I develop the frontend and backend architecture of a hotel management automation platform end-to-end, turning operational needs into reliable and scalable product flows.",
+    "previousRole": "Frontend Developer",
+    "previousPeriod": "Previous experience · 2.5+ years total",
+    "previousDescription": "I developed reusable, scalable, and user-focused interface architectures for e-commerce products and corporate web projects.",
+    "itemLabel": "Experience {number}"
+  },
+  "Projects": {
+    "sectionTitle": "Featured Works",
+    "title": "Projects",
+    "description": "Selected projects bridging product requirements with sustainable frontend architectures, reliable backend services, and production-driven infrastructure.",
+    "easyJotDescription": "A containerized full-stack application built with Next.js, Node.js, Drizzle ORM, Redis, and Docker.",
+    "hotelDescription": "An end-to-end reservation and operations management system for hotels, built with React (TypeScript) and Node.js.",
+    "techStack": "Technology stack",
+    "github": "GitHub",
+    "liveDemo": "Live Demo",
+    "githubSoon": "GitHub link coming soon",
+    "liveDemoSoon": "Live demo link coming soon",
+    "githubAria": "{project} GitHub link coming soon",
+    "liveDemoAria": "{project} live demo link coming soon"
+  },
+  "Contact": {
+    "eyebrow": "Let's work together",
+    "title": "Get in Touch",
+    "subtitle": "Share your project—whether it is a new product, scaling an existing system, or a technical collaboration. I will get back to you as soon as possible.",
+    "nameLabel": "Name",
+    "emailLabel": "Email",
+    "messageLabel": "Message",
+    "namePlaceholder": "Your full name",
+    "emailPlaceholder": "you@example.com",
+    "messagePlaceholder": "Tell me about your project and how we can work together.",
+    "submitBtn": "Send Message",
+    "rights": "All rights reserved.",
+    "copyright": "© 2026 Yasin Eryılmaz. All rights reserved.",
+    "socialNavigationLabel": "Social media links",
+    "backToTop": "Back to top",
+    "emailSubject": "Portfolio inquiry — {name}",
+    "emailBody": "Name: {name}\nEmail: {email}\n\nMessage:\n{message}"
+  }
+}
