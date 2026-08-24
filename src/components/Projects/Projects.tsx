@@ -1,6 +1,7 @@
 import { ExternalLink, GitFork, Layers3 } from "lucide-react"
 import { useTranslations } from "next-intl"
 
+import type { ProjectsProps } from "@/components/Projects/Projects.types"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import {
@@ -12,27 +13,7 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 
-const projects = [
-  {
-    title: "EasyJot",
-    descriptionKey: "easyJotDescription",
-    technologies: [
-      "Next.js",
-      "Node.js",
-      "Drizzle ORM",
-      "PostgreSQL",
-      "Redis",
-      "Docker",
-    ],
-  },
-  {
-    title: "Hotel Management Automation",
-    descriptionKey: "hotelDescription",
-    technologies: ["React.js", "TypeScript", "Node.js", "MySQL"],
-  },
-] as const
-
-export function Projects() {
+export function Projects({ locale, projects }: ProjectsProps) {
   const t = useTranslations("Projects")
 
   return (
@@ -60,10 +41,17 @@ export function Projects() {
         </div>
 
         <div className="mt-12 grid grid-cols-1 gap-5 lg:grid-cols-2">
-          {projects.map((project, index) => (
+          {projects.map((project, index) => {
+            const title = locale === "tr" ? project.titleTr : project.titleEn
+            const summary =
+              locale === "tr"
+                ? project.summaryTr ?? project.descriptionTr
+                : project.summaryEn ?? project.descriptionEn
+
+            return (
             <Card
               className="group gap-0 rounded-2xl border border-slate-200/80 bg-white py-0 shadow-sm ring-0 transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-[0_20px_48px_rgba(15,23,42,0.12)] dark:border-white/10 dark:bg-slate-950/70 dark:shadow-[0_8px_28px_rgba(0,0,0,0.18)] dark:hover:border-slate-600 dark:hover:shadow-[0_20px_48px_rgba(0,0,0,0.32)] motion-reduce:transform-none motion-reduce:transition-none"
-              key={project.title}
+              key={project.slug}
             >
               <CardHeader className="gap-6 border-b border-slate-100 p-6 dark:border-white/10 sm:p-8">
                 <div className="flex items-center justify-between">
@@ -77,10 +65,10 @@ export function Projects() {
 
                 <div>
                   <CardTitle className="text-2xl font-semibold tracking-[-0.035em] text-slate-950 dark:text-white sm:text-3xl">
-                    {project.title}
+                    {title}
                   </CardTitle>
                   <CardDescription className="mt-3 max-w-xl text-sm leading-6 text-slate-600 dark:text-slate-400 sm:text-base sm:leading-7">
-                    {t(project.descriptionKey)}
+                    {summary}
                   </CardDescription>
                 </div>
               </CardHeader>
@@ -90,7 +78,7 @@ export function Projects() {
                   {t("techStack")}
                 </p>
                 <div className="flex flex-wrap gap-2">
-                  {project.technologies.map((technology) => (
+                  {project.techStack.map((technology) => (
                     <Badge
                       className="h-7 border-slate-200 bg-slate-50 px-2.5 text-xs font-medium text-slate-700 dark:border-white/10 dark:bg-slate-900 dark:text-slate-300"
                       key={technology}
@@ -102,29 +90,48 @@ export function Projects() {
                 </div>
               </CardContent>
 
-              <CardFooter className="gap-3 rounded-none border-t border-slate-100 bg-slate-50/70 p-5 dark:border-white/10 dark:bg-slate-900/70 sm:p-6">
-                <Button
-                  aria-label={t("githubAria", { project: project.title })}
-                  className="h-9 rounded-lg px-3.5 transition-all duration-300 hover:border-slate-400 hover:bg-white hover:shadow-sm dark:border-white/10 dark:bg-slate-950/60 dark:text-slate-300 dark:hover:border-white/20 dark:hover:bg-slate-800 dark:hover:text-white"
-                  nativeButton={false}
-                  render={<a href="#projects" title={t("githubSoon")} />}
-                  variant="outline"
-                >
-                  <GitFork aria-hidden="true" data-icon="inline-start" />
-                  {t("github")}
-                </Button>
-                <Button
-                  aria-label={t("liveDemoAria", { project: project.title })}
-                  className="h-9 rounded-lg bg-slate-950 px-3.5 transition-all duration-300 hover:-translate-y-0.5 hover:bg-slate-700 hover:shadow-md dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200 motion-reduce:transform-none"
-                  nativeButton={false}
-                  render={<a href="#projects" title={t("liveDemoSoon")} />}
-                >
-                  {t("liveDemo")}
-                  <ExternalLink aria-hidden="true" data-icon="inline-end" />
-                </Button>
-              </CardFooter>
+              {(project.githubUrl || project.liveUrl) && (
+                <CardFooter className="gap-3 rounded-none border-t border-slate-100 bg-slate-50/70 p-5 dark:border-white/10 dark:bg-slate-900/70 sm:p-6">
+                  {project.githubUrl && (
+                    <Button
+                      aria-label={t("githubAria", { project: title })}
+                      className="h-9 rounded-lg px-3.5 transition-all duration-300 hover:border-slate-400 hover:bg-white hover:shadow-sm dark:border-white/10 dark:bg-slate-950/60 dark:text-slate-300 dark:hover:border-white/20 dark:hover:bg-slate-800 dark:hover:text-white"
+                      nativeButton={false}
+                      render={
+                        <a
+                          href={project.githubUrl}
+                          rel="noreferrer"
+                          target="_blank"
+                        />
+                      }
+                      variant="outline"
+                    >
+                      <GitFork aria-hidden="true" data-icon="inline-start" />
+                      {t("github")}
+                    </Button>
+                  )}
+                  {project.liveUrl && (
+                    <Button
+                      aria-label={t("liveDemoAria", { project: title })}
+                      className="h-9 rounded-lg bg-slate-950 px-3.5 transition-all duration-300 hover:-translate-y-0.5 hover:bg-slate-700 hover:shadow-md dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200 motion-reduce:transform-none"
+                      nativeButton={false}
+                      render={
+                        <a
+                          href={project.liveUrl}
+                          rel="noreferrer"
+                          target="_blank"
+                        />
+                      }
+                    >
+                      {t("liveDemo")}
+                      <ExternalLink aria-hidden="true" data-icon="inline-end" />
+                    </Button>
+                  )}
+                </CardFooter>
+              )}
             </Card>
-          ))}
+            )
+          })}
         </div>
       </div>
     </section>

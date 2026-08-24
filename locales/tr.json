@@ -39,7 +39,10 @@
     "stateTitle": "State & Data",
     "stateDesc": "Öngörülebilir durum yönetimi ve güvenilir veri akışları.",
     "backendTitle": "Backend & DevOps",
-    "backendDesc": "Uçtan uca geliştirme, altyapı ve production teslimatı."
+    "backendDesc": "Güvenilir backend servisleri ve veri odaklı uygulama mimarisi.",
+    "devopsTitle": "DevOps & Araçlar",
+    "devopsDesc": "Konteyner altyapıları, teslimat süreçleri ve production araçları.",
+    "otherDesc": "Ürün yaşam döngüsü boyunca kullanılan destekleyici teknolojiler."
   },
   "Experience": {
     "sectionTitle": "Kariyer Yolculuğu",
@@ -68,8 +71,8 @@
     "liveDemo": "Canlı Demo",
     "githubSoon": "GitHub bağlantısı yakında",
     "liveDemoSoon": "Canlı demo bağlantısı yakında",
-    "githubAria": "{project} GitHub bağlantısı yakında",
-    "liveDemoAria": "{project} canlı demo bağlantısı yakında"
+    "githubAria": "{project} projesini GitHub'da görüntüle",
+    "liveDemoAria": "{project} canlı demosunu aç"
   },
   "Contact": {
     "eyebrow": "Birlikte çalışalım",
@@ -77,11 +80,15 @@
     "subtitle": "Yeni bir ürün, mevcut bir sistemi ölçeklendirme veya teknik iş birliği için projenizi paylaşın. En kısa sürede dönüş yapacağım.",
     "nameLabel": "İsim",
     "emailLabel": "E-posta",
+    "subjectLabel": "Konu",
     "messageLabel": "Mesaj",
     "namePlaceholder": "Adınız ve soyadınız",
     "emailPlaceholder": "ornek@email.com",
+    "subjectPlaceholder": "Hangi konuda görüşmek istersiniz?",
     "messagePlaceholder": "Projenizden ve birlikte nasıl çalışabileceğimizden bahsedin.",
     "submitBtn": "Mesaj Gönder",
+    "submitting": "Gönderiliyor...",
+    "successMessage": "Mesajınız alındı. En kısa sürede size dönüş yapacağım.",
     "rights": "Tüm hakları saklıdır.",
     "copyright": "© 2026 Yasin Eryılmaz. Tüm hakları saklıdır.",
     "socialNavigationLabel": "Sosyal medya bağlantıları",

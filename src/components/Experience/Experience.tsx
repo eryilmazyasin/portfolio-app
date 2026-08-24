@@ -1,6 +1,7 @@
 import { BriefcaseBusiness } from "lucide-react"
 import { useTranslations } from "next-intl"
 
+import type { ExperienceProps } from "@/components/Experience/Experience.types"
 import { Badge } from "@/components/ui/badge"
 import {
   Card,
@@ -10,31 +11,7 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 
-const experiences = [
-  {
-    company: "Metus",
-    roleKey: "metusRole",
-    periodKey: "metusPeriod",
-    descriptionKey: "metusDescription",
-    technologies: ["React.js", "Next.js", "TypeScript", "TanStack Query", "SignalR"],
-  },
-  {
-    company: "Freelance",
-    roleKey: "freelanceRole",
-    periodKey: "freelancePeriod",
-    descriptionKey: "freelanceDescription",
-    technologies: ["React.js", "TypeScript", "Node.js", "MySQL"],
-  },
-  {
-    company: "Akinon & Detroit Digital",
-    roleKey: "previousRole",
-    periodKey: "previousPeriod",
-    descriptionKey: "previousDescription",
-    technologies: ["E-commerce", "Corporate UI", "Frontend Architecture"],
-  },
-] as const
-
-export function Experience() {
+export function Experience({ experiences, locale }: ExperienceProps) {
   const t = useTranslations("Experience")
 
   return (
@@ -60,7 +37,19 @@ export function Experience() {
         </div>
 
         <ol className="relative mt-14 space-y-5 before:absolute before:bottom-8 before:left-[0.4375rem] before:top-8 before:w-px before:bg-slate-200 dark:before:bg-white/10 sm:ml-2 sm:space-y-6">
-          {experiences.map((experience, index) => (
+          {experiences.map((experience, index) => {
+            const role = locale === "tr" ? experience.roleTr : experience.roleEn
+            const description =
+              locale === "tr"
+                ? experience.descriptionTr
+                : experience.descriptionEn
+            const period = experience.isCurrent
+              ? `${experience.startDate} — ${t("present")}`
+              : [experience.startDate, experience.endDate]
+                  .filter(Boolean)
+                  .join(" — ")
+
+            return (
             <li className="relative pl-8 sm:pl-10" key={experience.company}>
               <span
                 aria-hidden="true"
@@ -72,31 +61,44 @@ export function Experience() {
                   <div>
                     <div className="flex items-center gap-2 text-sm font-medium text-slate-500 dark:text-slate-400">
                       <BriefcaseBusiness aria-hidden="true" className="size-4" />
-                      {experience.company}
+                      {experience.companyUrl ? (
+                        <a
+                          className="transition-colors hover:text-slate-950 dark:hover:text-white"
+                          href={experience.companyUrl}
+                          rel="noreferrer"
+                          target="_blank"
+                        >
+                          {experience.company}
+                        </a>
+                      ) : (
+                        experience.company
+                      )}
                     </div>
                     <CardTitle className="mt-3 text-xl font-semibold tracking-[-0.025em] text-slate-950 dark:text-white sm:text-2xl">
-                      {t(experience.roleKey)}
+                      {role}
                     </CardTitle>
                   </div>
                   <CardDescription className="text-sm font-medium text-slate-400 dark:text-slate-500 sm:text-right">
-                    {t(experience.periodKey)}
+                    {period}
                   </CardDescription>
                 </CardHeader>
 
                 <CardContent className="grid gap-6 p-6 sm:p-7 lg:grid-cols-[1fr_auto] lg:items-end">
                   <p className="max-w-3xl text-sm leading-6 text-slate-600 dark:text-slate-400 sm:text-base sm:leading-7">
-                    {t(experience.descriptionKey)}
+                    {description}
                   </p>
                   <div className="flex flex-wrap gap-2 lg:max-w-sm lg:justify-end">
-                    {experience.technologies.map((technology) => (
+                    {[experience.location, experience.type]
+                      .filter((detail): detail is string => Boolean(detail))
+                      .map((detail) => (
                       <Badge
                         className="border-slate-200 bg-slate-50 text-slate-600 dark:border-white/10 dark:bg-slate-950/60 dark:text-slate-300"
-                        key={technology}
+                        key={detail}
                         variant="outline"
                       >
-                        {technology}
+                        {detail}
                       </Badge>
-                    ))}
+                      ))}
                   </div>
                 </CardContent>
               </Card>
@@ -105,7 +107,8 @@ export function Experience() {
                 {t("itemLabel", { number: index + 1 })}
               </span>
             </li>
-          ))}
+            )
+          })}
         </ol>
       </div>
     </section>

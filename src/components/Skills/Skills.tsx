@@ -1,47 +1,71 @@
-import { Boxes, Database, PanelsTopLeft } from "lucide-react"
+import { Boxes, Container, Database, PanelsTopLeft } from "lucide-react"
 import { useTranslations } from "next-intl"
 
+import type { SkillsProps } from "@/components/Skills/Skills.types"
 import { Badge } from "@/components/ui/badge"
+import type { PortfolioSkill } from "@/services/portfolio.types"
 
-const skillGroups = [
-  {
+const categoryPresentations = {
+  frontend: {
     titleKey: "frontendTitle",
     descriptionKey: "frontendDesc",
     icon: PanelsTopLeft,
-    skills: [
-      "React.js",
-      "Next.js",
-      "TypeScript",
-      "JavaScript (ES6+)",
-      "Tailwind CSS",
-      "shadcn/ui",
-    ],
   },
-  {
+  state: {
     titleKey: "stateTitle",
     descriptionKey: "stateDesc",
     icon: Boxes,
-    skills: ["Redux", "TanStack Query", "Context API", "Zustand"],
   },
-  {
+  backend: {
     titleKey: "backendTitle",
     descriptionKey: "backendDesc",
     icon: Database,
-    skills: [
-      "Node.js",
-      "PostgreSQL",
-      "Docker",
-      "Nginx",
-      "AWS",
-      "DigitalOcean",
-      "Webpack",
-      "Vercel",
-    ],
   },
-] as const
+  devops: {
+    titleKey: "devopsTitle",
+    descriptionKey: "devopsDesc",
+    icon: Container,
+  },
+} as const
 
-export function Skills() {
+function groupSkillsByCategory(skills: PortfolioSkill[]) {
+  // Map kullanımı kategori başına tek bir grup oluşturur ve sorgudan gelen skill sırasını korur.
+  const groups = new Map<string, PortfolioSkill[]>()
+
+  for (const skill of skills) {
+    const group = groups.get(skill.category) ?? []
+    group.push(skill)
+    groups.set(skill.category, group)
+  }
+
+  return Array.from(groups, ([category, items]) => ({ category, items }))
+}
+
+function getCategoryPresentation(category: string) {
+  const normalizedCategory = category.toLowerCase()
+
+  if (normalizedCategory.includes("front")) {
+    return categoryPresentations.frontend
+  }
+
+  if (normalizedCategory.includes("state")) {
+    return categoryPresentations.state
+  }
+
+  if (normalizedCategory.includes("devops")) {
+    return categoryPresentations.devops
+  }
+
+  if (normalizedCategory.includes("back")) {
+    return categoryPresentations.backend
+  }
+
+  return null
+}
+
+export function Skills({ skills }: SkillsProps) {
   const t = useTranslations("Skills")
+  const skillGroups = groupSkillsByCategory(skills)
 
   return (
     <section
@@ -69,30 +93,35 @@ export function Skills() {
 
         <div className="mt-12 grid gap-4 lg:grid-cols-3">
           {skillGroups.map((group) => {
-            const Icon = group.icon
+            const presentation = getCategoryPresentation(group.category)
+            const Icon = presentation?.icon ?? Boxes
 
             return (
               <article
                 className="rounded-2xl border border-slate-200/80 bg-slate-50/70 p-6 shadow-[0_1px_2px_rgba(15,23,42,0.03)] dark:border-white/10 dark:bg-slate-950/60 dark:shadow-[0_8px_28px_rgba(0,0,0,0.18)] sm:p-7"
-                key={group.titleKey}
+                key={group.category}
               >
                 <div className="grid size-10 place-items-center rounded-xl border border-slate-200 bg-white text-slate-700 shadow-sm dark:border-white/10 dark:bg-slate-900 dark:text-slate-300">
                   <Icon aria-hidden="true" className="size-4" />
                 </div>
                 <h3 className="mt-6 text-lg font-semibold tracking-[-0.025em] text-slate-950 dark:text-white">
-                  {t(group.titleKey)}
+                  {presentation
+                    ? t(presentation.titleKey)
+                    : group.category}
                 </h3>
                 <p className="mt-2 min-h-12 text-sm leading-6 text-slate-500 dark:text-slate-400">
-                  {t(group.descriptionKey)}
+                  {presentation
+                    ? t(presentation.descriptionKey)
+                    : t("otherDesc")}
                 </p>
                 <div className="mt-6 flex flex-wrap gap-2">
-                  {group.skills.map((skill) => (
+                  {group.items.map((skill) => (
                     <Badge
                       className="h-7 border-slate-200 bg-white px-2.5 text-xs font-medium text-slate-700 shadow-sm dark:border-white/10 dark:bg-slate-900 dark:text-slate-300"
-                      key={skill}
+                      key={skill.id}
                       variant="outline"
                     >
-                      {skill}
+                      {skill.name}
                     </Badge>
                   ))}
                 </div>

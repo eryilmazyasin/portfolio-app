@@ -39,7 +39,10 @@
     "stateTitle": "State & Data",
     "stateDesc": "Predictable state management and reliable data flows.",
     "backendTitle": "Backend & DevOps",
-    "backendDesc": "End-to-end development, infrastructure, and production delivery."
+    "backendDesc": "Reliable backend services and data-driven application architecture.",
+    "devopsTitle": "DevOps & Tools",
+    "devopsDesc": "Containerized infrastructure, delivery pipelines, and production tooling.",
+    "otherDesc": "Supporting technologies used across the product lifecycle."
   },
   "Experience": {
     "sectionTitle": "Career Journey",
@@ -68,8 +71,8 @@
     "liveDemo": "Live Demo",
     "githubSoon": "GitHub link coming soon",
     "liveDemoSoon": "Live demo link coming soon",
-    "githubAria": "{project} GitHub link coming soon",
-    "liveDemoAria": "{project} live demo link coming soon"
+    "githubAria": "View {project} on GitHub",
+    "liveDemoAria": "Open the live demo for {project}"
   },
   "Contact": {
     "eyebrow": "Let's work together",
@@ -77,11 +80,15 @@
     "subtitle": "Share your project—whether it is a new product, scaling an existing system, or a technical collaboration. I will get back to you as soon as possible.",
     "nameLabel": "Name",
     "emailLabel": "Email",
+    "subjectLabel": "Subject",
     "messageLabel": "Message",
     "namePlaceholder": "Your full name",
     "emailPlaceholder": "you@example.com",
+    "subjectPlaceholder": "What would you like to discuss?",
     "messagePlaceholder": "Tell me about your project and how we can work together.",
     "submitBtn": "Send Message",
+    "submitting": "Sending...",
+    "successMessage": "Your message has been received. I will get back to you soon.",
     "rights": "All rights reserved.",
     "copyright": "© 2026 Yasin Eryılmaz. All rights reserved.",
     "socialNavigationLabel": "Social media links",
