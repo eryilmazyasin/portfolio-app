@@ -2,7 +2,7 @@
 
 import { Languages } from "lucide-react"
 import { useLocale, useTranslations } from "next-intl"
-import { useRouter } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 
 import { Button } from "@/components/ui/button"
 
@@ -10,6 +10,7 @@ const ONE_YEAR_IN_SECONDS = 60 * 60 * 24 * 365
 
 export function LanguageSwitcher() {
   const locale = useLocale()
+  const pathname = usePathname()
   const router = useRouter()
   const t = useTranslations("LanguageSwitcher")
 
@@ -18,6 +19,13 @@ export function LanguageSwitcher() {
 
     // Tercihi temiz URL yapısını değiştirmeden bir yıl boyunca tarayıcıda saklar.
     document.cookie = `NEXT_LOCALE=${nextLocale}; path=/; max-age=${ONE_YEAR_IN_SECONDS}; SameSite=Lax`
+
+    // SEO dil rotasındayken URL segmentini de değiştirir; kök rotada cookie tabanlı temiz yapı korunur.
+    if (/^\/(en|tr)(\/|$)/.test(pathname)) {
+      router.push(pathname.replace(/^\/(en|tr)(?=\/|$)/, `/${nextLocale}`))
+      return
+    }
+
     router.refresh()
   }
 
