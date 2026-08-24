@@ -1,10 +1,10 @@
 "use client"
 
-import Link from "next/link"
 import { ArrowUpRight, Menu } from "lucide-react"
 import { useTranslations } from "next-intl"
 
 import { navigationItems } from "@/components/Navbar/navigation"
+import { ScrollToSection } from "@/components/ScrollToSection/ScrollToSection"
 import { Button } from "@/components/ui/button"
 import {
   Sheet,
@@ -45,12 +45,12 @@ export function MobileNavigation() {
         <nav aria-label={t("mobileNavigationLabel")} className="flex flex-col gap-1 p-2">
           {navigationItems.map((item) => (
             <SheetClose
-              key={item.href}
+              key={item.targetId}
               nativeButton={false}
               render={
-                <Link
-                  className="flex items-center justify-between rounded-xl px-3 py-3 text-base font-medium text-slate-700 transition-colors hover:bg-slate-100 hover:text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 dark:text-slate-300 dark:hover:bg-white/10 dark:hover:text-white"
-                  href={item.href}
+                <ScrollToSection
+                  className="flex cursor-pointer items-center justify-between rounded-xl px-3 py-3 text-base font-medium text-slate-700 transition-colors hover:bg-slate-100 hover:text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 dark:text-slate-300 dark:hover:bg-white/10 dark:hover:text-white"
+                  targetId={item.targetId}
                 />
               }
             >
@@ -62,9 +62,9 @@ export function MobileNavigation() {
           <SheetClose
             nativeButton={false}
             render={
-              <Link
-                className="mt-3 inline-flex h-11 items-center justify-center rounded-xl bg-slate-950 px-5 text-sm font-medium text-white transition-colors hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-2 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200 dark:focus-visible:ring-offset-slate-950"
-                href="#contact"
+              <ScrollToSection
+                className="mt-3 inline-flex h-11 cursor-pointer items-center justify-center rounded-xl bg-slate-950 px-5 text-sm font-medium text-white transition-colors hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-2 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200 dark:focus-visible:ring-offset-slate-950"
+                targetId="contact"
               />
             }
           >

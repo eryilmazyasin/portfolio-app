@@ -1,5 +1,5 @@
 export const navigationItems = [
-  { key: "skills", href: "#skills" },
-  { key: "experience", href: "#experience" },
-  { key: "projects", href: "#projects" },
+  { key: "skills", targetId: "skills" },
+  { key: "experience", targetId: "experience" },
+  { key: "projects", targetId: "projects" },
 ] as const

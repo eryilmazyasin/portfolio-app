@@ -1,8 +1,9 @@
-import Link from "next/link"
 import { ArrowUpRight, BriefcaseBusiness, GitFork, Mail } from "lucide-react"
 import { useTranslations } from "next-intl"
 
 import { ContactForm } from "@/components/Contact/ContactForm"
+import { EmailContact } from "@/components/Contact/EmailContact"
+import { ScrollToSection } from "@/components/ScrollToSection/ScrollToSection"
 
 const socialLinks = [
   {
@@ -44,6 +45,8 @@ export function Contact() {
             {t("subtitle")}
           </p>
 
+          <EmailContact />
+
           <ContactForm />
         </div>
 
@@ -73,13 +76,13 @@ export function Contact() {
             })}
           </nav>
 
-          <Link
+          <ScrollToSection
             aria-label={t("backToTop")}
             className="sr-only focus:not-sr-only focus:rounded-lg focus:bg-white focus:px-3 focus:py-2 focus:text-slate-950 dark:focus:bg-slate-900 dark:focus:text-white"
-            href="#top"
+            targetId="top"
           >
             {t("backToTop")}
-          </Link>
+          </ScrollToSection>
         </footer>
       </div>
     </section>

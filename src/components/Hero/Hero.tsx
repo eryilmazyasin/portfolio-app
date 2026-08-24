@@ -1,12 +1,14 @@
 import { Suspense } from "react"
-import Link from "next/link"
 import { ArrowDown, ArrowUpRight, Code2 } from "lucide-react"
 import { useTranslations } from "next-intl"
 
 import { LiveStatusBadge } from "@/components/home/LiveStatusBadge"
+import { ScrollToSection } from "@/components/ScrollToSection/ScrollToSection"
+import { getYearsOfExperience } from "@/lib/experience"
 
 export function Hero() {
   const t = useTranslations("Hero")
+  const yearsOfExperience = getYearsOfExperience()
 
   return (
     <section
@@ -37,7 +39,7 @@ export function Hero() {
             className="max-w-5xl text-balance font-sans text-5xl font-semibold leading-[0.96] tracking-[-0.06em] text-slate-950 dark:text-white sm:text-7xl lg:text-[6rem] lg:leading-[0.94]"
             id="hero-title"
           >
-            {t("title")}
+            {t("title", { years: yearsOfExperience })}
           </h1>
 
           <div className="mt-10 grid gap-9 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
@@ -46,23 +48,23 @@ export function Hero() {
             </p>
 
             <div className="flex flex-col gap-3 sm:flex-row lg:justify-end">
-              <Link
-                className="group inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-slate-950 px-5 text-sm font-medium text-white shadow-[0_10px_30px_rgba(15,23,42,0.18)] transition-all hover:-translate-y-0.5 hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-2 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200 dark:focus-visible:ring-offset-slate-950 motion-reduce:transform-none"
-                href="#projects"
+              <ScrollToSection
+                className="group inline-flex h-12 cursor-pointer items-center justify-center gap-2 rounded-xl bg-slate-950 px-5 text-sm font-medium text-white shadow-[0_10px_30px_rgba(15,23,42,0.18)] transition-all hover:-translate-y-0.5 hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-2 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200 dark:focus-visible:ring-offset-slate-950 motion-reduce:transform-none"
+                targetId="projects"
               >
                 {t("ctaProjects")}
                 <ArrowUpRight
                   aria-hidden="true"
                   className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 motion-reduce:transform-none"
                 />
-              </Link>
-              <Link
-                className="inline-flex h-12 items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white/70 px-5 text-sm font-medium text-slate-700 shadow-sm backdrop-blur-xl transition-colors hover:border-slate-300 hover:bg-white hover:text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-2 dark:border-white/10 dark:bg-slate-900/70 dark:text-slate-300 dark:hover:border-white/20 dark:hover:bg-slate-800 dark:hover:text-white dark:focus-visible:ring-offset-slate-950"
-                href="#skills"
+              </ScrollToSection>
+              <ScrollToSection
+                className="inline-flex h-12 cursor-pointer items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white/70 px-5 text-sm font-medium text-slate-700 shadow-sm backdrop-blur-xl transition-colors hover:border-slate-300 hover:bg-white hover:text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-2 dark:border-white/10 dark:bg-slate-900/70 dark:text-slate-300 dark:hover:border-white/20 dark:hover:bg-slate-800 dark:hover:text-white dark:focus-visible:ring-offset-slate-950"
+                targetId="skills"
               >
                 <Code2 aria-hidden="true" className="size-4" />
                 {t("ctaSkills")}
-              </Link>
+              </ScrollToSection>
             </div>
           </div>
 
@@ -74,14 +76,14 @@ export function Hero() {
 
         <div className="mt-16 flex items-center justify-between border-t border-slate-200/80 pt-5 text-xs font-medium uppercase tracking-[0.16em] text-slate-400 dark:border-white/10 dark:text-slate-500 sm:mt-24">
           <span>{t("location")}</span>
-          <Link
+          <ScrollToSection
             aria-label={t("scrollLabel")}
-            className="flex items-center gap-2 rounded-lg py-1 text-slate-500 transition-colors hover:text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 dark:text-slate-400 dark:hover:text-white"
-            href="#skills"
+            className="flex cursor-pointer items-center gap-2 rounded-lg py-1 text-slate-500 transition-colors hover:text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 dark:text-slate-400 dark:hover:text-white"
+            targetId="skills"
           >
             {t("explore")}
             <ArrowDown aria-hidden="true" className="size-4" />
-          </Link>
+          </ScrollToSection>
         </div>
       </div>
     </section>

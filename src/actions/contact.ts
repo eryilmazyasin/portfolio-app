@@ -5,10 +5,14 @@ import { messages } from '@/db/schema';
 import { Ratelimit } from '@upstash/ratelimit';
 import { Redis } from '@upstash/redis';
 import { headers } from 'next/headers';
+import { Resend } from 'resend';
 
 import type { ContactActionResult } from "@/actions/contact.types";
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const CONTACT_RECIPIENT = "yasineryilmazfb@gmail.com";
+const CONTACT_SENDER = "Portfolio Contact <onboarding@resend.dev>";
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 // ==========================================
 // 🛡️ DISTRIBUTED SLIDING WINDOW RATE LIMITER
@@ -45,7 +49,19 @@ export async function submitContactForm(
     headerList.get("x-real-ip") ||
     "127.0.0.1";
 
-  const { success: isAllowed } = await ratelimit.limit(clientIp);
+  let isAllowed: boolean;
+
+  try {
+    const rateLimitResult = await ratelimit.limit(clientIp);
+    isAllowed = rateLimitResult.success;
+  } catch (error) {
+    console.error("Failed to check contact form rate limit:", error);
+    return {
+      success: false,
+      error: "Something went wrong. Please try again later.",
+    };
+  }
+
   if (!isAllowed) {
     return {
       success: false,
@@ -82,14 +98,57 @@ export async function submitContactForm(
     };
   }
 
+  if (!process.env.RESEND_API_KEY) {
+    console.error("RESEND_API_KEY is not configured.");
+    return {
+      success: false,
+      error: "Email delivery is temporarily unavailable. Please try again later.",
+    };
+  }
+
   try {
     await db.insert(messages).values({ name, email, subject, content });
-    return { success: true };
   } catch (error) {
-    console.error("Failed to submit contact form:", error);
+    console.error("Failed to save contact message:", error);
     return {
       success: false,
       error: "Something went wrong. Please try again later.",
     };
   }
+
+  try {
+    // Düz metin gövde kullanımı kullanıcı girdisinin HTML olarak yorumlanmasını engeller.
+    const { error } = await resend.emails.send({
+      from: CONTACT_SENDER,
+      to: [CONTACT_RECIPIENT],
+      replyTo: email,
+      subject: `Yeni İletişim Mesajı: ${name}`,
+      text: [
+        `Gönderenin Adı: ${name}`,
+        `E-posta: ${email}`,
+        `Form Konusu: ${subject}`,
+        "",
+        "Mesaj:",
+        content,
+      ].join("\n"),
+    });
+
+    if (error) {
+      console.error("Failed to send contact email:", error);
+      return {
+        success: false,
+        error:
+          "Your message was saved, but the email notification could not be sent. Please try again later.",
+      };
+    }
+  } catch (error) {
+    console.error("Failed to send contact email:", error);
+    return {
+      success: false,
+      error:
+        "Your message was saved, but the email notification could not be sent. Please try again later.",
+    };
+  }
+
+  return { success: true };
 }

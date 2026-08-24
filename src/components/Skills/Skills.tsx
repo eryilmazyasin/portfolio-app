@@ -1,67 +1,13 @@
-import { Boxes, Container, Database, PanelsTopLeft } from "lucide-react"
+import { Boxes } from "lucide-react"
 import { useTranslations } from "next-intl"
 
 import type { SkillsProps } from "@/components/Skills/Skills.types"
+import {
+  getCategoryPresentation,
+  groupSkillsByCategory,
+} from "@/components/Skills/Skills.utils"
 import { Badge } from "@/components/ui/badge"
-import type { PortfolioSkill } from "@/services/portfolio.types"
-
-const categoryPresentations = {
-  frontend: {
-    titleKey: "frontendTitle",
-    descriptionKey: "frontendDesc",
-    icon: PanelsTopLeft,
-  },
-  state: {
-    titleKey: "stateTitle",
-    descriptionKey: "stateDesc",
-    icon: Boxes,
-  },
-  backend: {
-    titleKey: "backendTitle",
-    descriptionKey: "backendDesc",
-    icon: Database,
-  },
-  devops: {
-    titleKey: "devopsTitle",
-    descriptionKey: "devopsDesc",
-    icon: Container,
-  },
-} as const
-
-function groupSkillsByCategory(skills: PortfolioSkill[]) {
-  // Map kullanımı kategori başına tek bir grup oluşturur ve sorgudan gelen skill sırasını korur.
-  const groups = new Map<string, PortfolioSkill[]>()
-
-  for (const skill of skills) {
-    const group = groups.get(skill.category) ?? []
-    group.push(skill)
-    groups.set(skill.category, group)
-  }
-
-  return Array.from(groups, ([category, items]) => ({ category, items }))
-}
-
-function getCategoryPresentation(category: string) {
-  const normalizedCategory = category.toLowerCase()
-
-  if (normalizedCategory.includes("front")) {
-    return categoryPresentations.frontend
-  }
-
-  if (normalizedCategory.includes("state")) {
-    return categoryPresentations.state
-  }
-
-  if (normalizedCategory.includes("devops")) {
-    return categoryPresentations.devops
-  }
-
-  if (normalizedCategory.includes("back")) {
-    return categoryPresentations.backend
-  }
-
-  return null
-}
+import { cn } from "@/lib/utils"
 
 export function Skills({ skills }: SkillsProps) {
   const t = useTranslations("Skills")
@@ -91,17 +37,33 @@ export function Skills({ skills }: SkillsProps) {
           </p>
         </div>
 
-        <div className="mt-12 grid gap-4 lg:grid-cols-3">
+        <div className="mt-12 grid gap-4 md:grid-cols-2">
           {skillGroups.map((group) => {
             const presentation = getCategoryPresentation(group.category)
             const Icon = presentation?.icon ?? Boxes
 
             return (
               <article
-                className="rounded-2xl border border-slate-200/80 bg-slate-50/70 p-6 shadow-[0_1px_2px_rgba(15,23,42,0.03)] dark:border-white/10 dark:bg-slate-950/60 dark:shadow-[0_8px_28px_rgba(0,0,0,0.18)] sm:p-7"
+                className={cn(
+                  "group/card relative overflow-hidden rounded-2xl border border-slate-200/80 bg-white/65 p-6 shadow-[0_1px_2px_rgba(15,23,42,0.03)] backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 dark:border-white/10 dark:bg-slate-950/55 dark:shadow-[0_8px_28px_rgba(0,0,0,0.18)] motion-reduce:transform-none sm:p-7",
+                  presentation?.cardClassName
+                )}
                 key={group.category}
               >
-                <div className="grid size-10 place-items-center rounded-xl border border-slate-200 bg-white text-slate-700 shadow-sm dark:border-white/10 dark:bg-slate-900 dark:text-slate-300">
+                <div
+                  aria-hidden="true"
+                  className={cn(
+                    "absolute inset-x-0 top-0 h-px opacity-80",
+                    presentation?.accentClassName
+                  )}
+                />
+                <div
+                  className={cn(
+                    "grid size-10 place-items-center rounded-xl border shadow-sm transition-colors duration-300",
+                    presentation?.iconClassName ??
+                      "border-slate-200 bg-white text-slate-700 dark:border-white/10 dark:bg-slate-900 dark:text-slate-300"
+                  )}
+                >
                   <Icon aria-hidden="true" className="size-4" />
                 </div>
                 <h3 className="mt-6 text-lg font-semibold tracking-[-0.025em] text-slate-950 dark:text-white">
@@ -117,7 +79,11 @@ export function Skills({ skills }: SkillsProps) {
                 <div className="mt-6 flex flex-wrap gap-2">
                   {group.items.map((skill) => (
                     <Badge
-                      className="h-7 border-slate-200 bg-white px-2.5 text-xs font-medium text-slate-700 shadow-sm dark:border-white/10 dark:bg-slate-900 dark:text-slate-300"
+                      className={cn(
+                        "h-7 rounded-md border px-2.5 font-mono text-[0.7rem] font-medium tracking-[-0.015em] shadow-sm backdrop-blur-md transition-all duration-200 hover:scale-105 motion-reduce:transform-none",
+                        presentation?.badgeClassName ??
+                          "border-slate-200/80 bg-white/70 text-slate-700 hover:border-slate-300 hover:shadow-md dark:border-white/10 dark:bg-slate-900/70 dark:text-slate-300"
+                      )}
                       key={skill.id}
                       variant="outline"
                     >

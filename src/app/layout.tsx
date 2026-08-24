@@ -6,6 +6,8 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getLocale, getMessages } from 'next-intl/server';
 import { Geist, Geist_Mono } from 'next/font/google';
 
+import { getYearsOfExperience } from '@/lib/experience';
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -16,11 +18,14 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Yasin Eryılmaz — Frontend & Full-Stack Developer",
-  description:
-    "6+ yıllık deneyime sahip Frontend ve Full-Stack geliştirici Yasin Eryılmaz'ın kişisel portfolyosu.",
-};
+export function generateMetadata(): Metadata {
+  const yearsOfExperience = getYearsOfExperience();
+
+  return {
+    title: "Yasin Eryılmaz — Frontend & Full-Stack Developer",
+    description: `${yearsOfExperience}+ yıllık deneyime sahip Frontend ve Full-Stack geliştirici Yasin Eryılmaz'ın kişisel portfolyosu.`,
+  };
+}
 
 export default async function RootLayout({
   children,
@@ -44,7 +49,7 @@ export default async function RootLayout({
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider
             attribute="class"
-            defaultTheme="light"
+            defaultTheme="dark"
             enableSystem
             disableTransitionOnChange
           >
