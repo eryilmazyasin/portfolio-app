@@ -1,79 +1,325 @@
-import { db } from "./index"
-import {
-  experiences,
-  projects,
-  skills,
-} from "./schema"
+import { db } from './index';
+import { experiences, projects, skills } from './schema';
 
-type ExperienceInsert = typeof experiences.$inferInsert
-type ProjectInsert = typeof projects.$inferInsert
-type SkillInsert = typeof skills.$inferInsert
+type ExperienceInsert = typeof experiences.$inferInsert;
+type ProjectInsert = typeof projects.$inferInsert;
+type SkillInsert = typeof skills.$inferInsert;
 
 const skillDefinitions = [
   // Frontend temelleri, state yönetimi, UI ve test yetkinlikleri aynı uzmanlık grubu altında tutulur.
-  { name: "React.js", category: "Frontend", iconName: "Atom", isFeatured: true },
-  { name: "Next.js", category: "Frontend", iconName: "PanelsTopLeft", isFeatured: true },
-  { name: "TypeScript", category: "Frontend", iconName: "FileType2", isFeatured: true },
-  { name: "JavaScript (ES6+)", category: "Frontend", iconName: "Braces", isFeatured: true },
+  {
+    name: "React.js",
+    category: "Frontend",
+    iconName: "Atom",
+    isFeatured: true,
+  },
+  {
+    name: "Next.js",
+    category: "Frontend",
+    iconName: "PanelsTopLeft",
+    isFeatured: true,
+  },
+  {
+    name: "TypeScript",
+    category: "Frontend",
+    iconName: "FileType2",
+    isFeatured: true,
+  },
+  {
+    name: "JavaScript (ES6+)",
+    category: "Frontend",
+    iconName: "Braces",
+    isFeatured: true,
+  },
   { name: "HTML5", category: "Frontend", iconName: "Code2", isFeatured: false },
-  { name: "CSS3", category: "Frontend", iconName: "Palette", isFeatured: false },
-  { name: "SCSS", category: "Frontend", iconName: "Palette", isFeatured: false },
-  { name: "Redux", category: "Frontend", iconName: "Workflow", isFeatured: true },
-  { name: "TanStack Query", category: "Frontend", iconName: "RefreshCw", isFeatured: true },
-  { name: "Context API", category: "Frontend", iconName: "Share2", isFeatured: false },
-  { name: "Zustand", category: "Frontend", iconName: "Store", isFeatured: false },
-  { name: "Tailwind CSS", category: "Frontend", iconName: "Wind", isFeatured: true },
-  { name: "shadcn/ui", category: "Frontend", iconName: "Component", isFeatured: false },
-  { name: "Material UI (MUI)", category: "Frontend", iconName: "Component", isFeatured: false },
-  { name: "Bootstrap", category: "Frontend", iconName: "LayoutGrid", isFeatured: false },
-  { name: "Emotion", category: "Frontend", iconName: "Paintbrush", isFeatured: false },
-  { name: "Styled-components", category: "Frontend", iconName: "Paintbrush", isFeatured: false },
-  { name: "Ant Design", category: "Frontend", iconName: "Component", isFeatured: false },
-  { name: "Vitest", category: "Frontend", iconName: "TestTube2", isFeatured: false },
-  { name: "Playwright", category: "Frontend", iconName: "FlaskConical", isFeatured: false },
-  { name: "React Testing Library", category: "Frontend", iconName: "TestTube2", isFeatured: false },
+  {
+    name: "CSS3",
+    category: "Frontend",
+    iconName: "Palette",
+    isFeatured: false,
+  },
+  {
+    name: "SCSS",
+    category: "Frontend",
+    iconName: "Palette",
+    isFeatured: false,
+  },
+  {
+    name: "Redux",
+    category: "Frontend",
+    iconName: "Workflow",
+    isFeatured: true,
+  },
+  {
+    name: "TanStack Query",
+    category: "Frontend",
+    iconName: "RefreshCw",
+    isFeatured: true,
+  },
+  {
+    name: "Context API",
+    category: "Frontend",
+    iconName: "Share2",
+    isFeatured: false,
+  },
+  {
+    name: "Zustand",
+    category: "Frontend",
+    iconName: "Store",
+    isFeatured: false,
+  },
+  {
+    name: "Tailwind CSS",
+    category: "Frontend",
+    iconName: "Wind",
+    isFeatured: true,
+  },
+  {
+    name: "shadcn/ui",
+    category: "Frontend",
+    iconName: "Component",
+    isFeatured: false,
+  },
+  {
+    name: "Material UI (MUI)",
+    category: "Frontend",
+    iconName: "Component",
+    isFeatured: false,
+  },
+  {
+    name: "Bootstrap",
+    category: "Frontend",
+    iconName: "LayoutGrid",
+    isFeatured: false,
+  },
+  {
+    name: "Emotion",
+    category: "Frontend",
+    iconName: "Paintbrush",
+    isFeatured: false,
+  },
+  {
+    name: "Styled-components",
+    category: "Frontend",
+    iconName: "Paintbrush",
+    isFeatured: false,
+  },
+  {
+    name: "Ant Design",
+    category: "Frontend",
+    iconName: "Component",
+    isFeatured: false,
+  },
+  {
+    name: "Vitest",
+    category: "Frontend",
+    iconName: "TestTube2",
+    isFeatured: false,
+  },
+  {
+    name: "Playwright",
+    category: "Frontend",
+    iconName: "FlaskConical",
+    isFeatured: false,
+  },
+  {
+    name: "React Testing Library",
+    category: "Frontend",
+    iconName: "TestTube2",
+    isFeatured: false,
+  },
 
   // Backend / Full-Stack
-  { name: "Node.js", category: "Backend / Full-Stack", iconName: "Server", isFeatured: true },
-  { name: "Express.js", category: "Backend / Full-Stack", iconName: "Route", isFeatured: false },
-  { name: "Supabase", category: "Backend / Full-Stack", iconName: "DatabaseZap", isFeatured: false },
-  { name: "PHP", category: "Backend / Full-Stack", iconName: "FileCode2", isFeatured: false },
-  { name: "PostgreSQL", category: "Backend / Full-Stack", iconName: "Database", isFeatured: true },
-  { name: "MySQL", category: "Backend / Full-Stack", iconName: "Database", isFeatured: false },
-  { name: "SQL", category: "Backend / Full-Stack", iconName: "Database", isFeatured: false },
-  { name: "Drizzle ORM", category: "Backend / Full-Stack", iconName: "TableProperties", isFeatured: true },
-  { name: "Redis (Upstash)", category: "Backend / Full-Stack", iconName: "DatabaseZap", isFeatured: true },
-  { name: "REST APIs", category: "Backend / Full-Stack", iconName: "Waypoints", isFeatured: false },
-  { name: "Integration Testing", category: "Backend / Full-Stack", iconName: "TestTube2", isFeatured: false },
-  { name: "Database Management", category: "Backend / Full-Stack", iconName: "Database", isFeatured: false },
+  {
+    name: "Node.js",
+    category: "Backend / Full-Stack",
+    iconName: "Server",
+    isFeatured: true,
+  },
+  {
+    name: "Express.js",
+    category: "Backend / Full-Stack",
+    iconName: "Route",
+    isFeatured: false,
+  },
+  {
+    name: "Supabase",
+    category: "Backend / Full-Stack",
+    iconName: "DatabaseZap",
+    isFeatured: false,
+  },
+  {
+    name: "PHP",
+    category: "Backend / Full-Stack",
+    iconName: "FileCode2",
+    isFeatured: false,
+  },
+  {
+    name: "PostgreSQL",
+    category: "Backend / Full-Stack",
+    iconName: "Database",
+    isFeatured: true,
+  },
+  {
+    name: "MySQL",
+    category: "Backend / Full-Stack",
+    iconName: "Database",
+    isFeatured: false,
+  },
+  {
+    name: "SQL",
+    category: "Backend / Full-Stack",
+    iconName: "Database",
+    isFeatured: false,
+  },
+  {
+    name: "Drizzle ORM",
+    category: "Backend / Full-Stack",
+    iconName: "TableProperties",
+    isFeatured: true,
+  },
+  {
+    name: "Redis (Upstash)",
+    category: "Backend / Full-Stack",
+    iconName: "DatabaseZap",
+    isFeatured: true,
+  },
+  {
+    name: "REST APIs",
+    category: "Backend / Full-Stack",
+    iconName: "Waypoints",
+    isFeatured: false,
+  },
+  {
+    name: "Integration Testing",
+    category: "Backend / Full-Stack",
+    iconName: "TestTube2",
+    isFeatured: false,
+  },
+  {
+    name: "Database Management",
+    category: "Backend / Full-Stack",
+    iconName: "Database",
+    isFeatured: false,
+  },
 
   // DevOps / Cloud
-  { name: "AWS", category: "DevOps / Cloud", iconName: "Cloud", isFeatured: false },
-  { name: "DigitalOcean", category: "DevOps / Cloud", iconName: "Cloud", isFeatured: false },
-  { name: "VPS Deployment", category: "DevOps / Cloud", iconName: "ServerCog", isFeatured: false },
-  { name: "Nginx", category: "DevOps / Cloud", iconName: "Network", isFeatured: false },
-  { name: "Linux Server Environments", category: "DevOps / Cloud", iconName: "Terminal", isFeatured: false },
-  { name: "Vercel", category: "DevOps / Cloud", iconName: "CloudUpload", isFeatured: false },
-  { name: "Railway", category: "DevOps / Cloud", iconName: "CloudUpload", isFeatured: false },
-  { name: "Netlify", category: "DevOps / Cloud", iconName: "CloudUpload", isFeatured: false },
-  { name: "Docker", category: "DevOps / Cloud", iconName: "Container", isFeatured: true },
-  { name: "GitHub Actions", category: "DevOps / Cloud", iconName: "Workflow", isFeatured: true },
-  { name: "GitLab CI/CD", category: "DevOps / Cloud", iconName: "Workflow", isFeatured: false },
+  {
+    name: "AWS",
+    category: "DevOps / Cloud",
+    iconName: "Cloud",
+    isFeatured: false,
+  },
+  {
+    name: "DigitalOcean",
+    category: "DevOps / Cloud",
+    iconName: "Cloud",
+    isFeatured: false,
+  },
+  {
+    name: "VPS Deployment",
+    category: "DevOps / Cloud",
+    iconName: "ServerCog",
+    isFeatured: false,
+  },
+  {
+    name: "Nginx",
+    category: "DevOps / Cloud",
+    iconName: "Network",
+    isFeatured: false,
+  },
+  {
+    name: "Linux Server Environments",
+    category: "DevOps / Cloud",
+    iconName: "Terminal",
+    isFeatured: false,
+  },
+  {
+    name: "Vercel",
+    category: "DevOps / Cloud",
+    iconName: "CloudUpload",
+    isFeatured: false,
+  },
+  {
+    name: "Railway",
+    category: "DevOps / Cloud",
+    iconName: "CloudUpload",
+    isFeatured: false,
+  },
+  {
+    name: "Netlify",
+    category: "DevOps / Cloud",
+    iconName: "CloudUpload",
+    isFeatured: false,
+  },
+  {
+    name: "Docker",
+    category: "DevOps / Cloud",
+    iconName: "Container",
+    isFeatured: true,
+  },
+  {
+    name: "GitHub Actions",
+    category: "DevOps / Cloud",
+    iconName: "Workflow",
+    isFeatured: true,
+  },
+  {
+    name: "GitLab CI/CD",
+    category: "DevOps / Cloud",
+    iconName: "Workflow",
+    isFeatured: false,
+  },
 
   // Tooling ve tasarım iş birliği
-  { name: "Webpack", category: "Tooling", iconName: "Package", isFeatured: false },
-  { name: "Babel", category: "Tooling", iconName: "Languages", isFeatured: false },
-  { name: "Git", category: "Tooling", iconName: "GitBranch", isFeatured: false },
-  { name: "SonarQube", category: "Tooling", iconName: "ScanSearch", isFeatured: false },
-  { name: "Figma", category: "Tooling", iconName: "PenTool", isFeatured: false },
+  {
+    name: "Webpack",
+    category: "Tooling",
+    iconName: "Package",
+    isFeatured: false,
+  },
+  {
+    name: "Babel",
+    category: "Tooling",
+    iconName: "Languages",
+    isFeatured: false,
+  },
+  {
+    name: "Git",
+    category: "Tooling",
+    iconName: "GitBranch",
+    isFeatured: false,
+  },
+  {
+    name: "SonarQube",
+    category: "Tooling",
+    iconName: "ScanSearch",
+    isFeatured: false,
+  },
+  {
+    name: "Figma",
+    category: "Tooling",
+    iconName: "PenTool",
+    isFeatured: false,
+  },
   { name: "Zeplin", category: "Tooling", iconName: "Ruler", isFeatured: false },
-  { name: "Adobe XD", category: "Tooling", iconName: "PenTool", isFeatured: false },
-  { name: "Adobe Photoshop", category: "Tooling", iconName: "Image", isFeatured: false },
-] as const
+  {
+    name: "Adobe XD",
+    category: "Tooling",
+    iconName: "PenTool",
+    isFeatured: false,
+  },
+  {
+    name: "Adobe Photoshop",
+    category: "Tooling",
+    iconName: "Image",
+    isFeatured: false,
+  },
+] as const;
 
 const skillSeed = skillDefinitions.map(
-  (skill, index): SkillInsert => ({ ...skill, order: index + 1 })
-)
+  (skill, index): SkillInsert => ({ ...skill, order: index + 1 }),
+);
 
 const projectSeed = [
   {
@@ -88,7 +334,15 @@ const projectSeed = [
       "• Next.js, TypeScript ve React Server Components kullanılarak sıfırdan kişisel geliştirici portföyü geliştirildi.\n• PostgreSQL üzerinde Drizzle ORM ile ilişkisel veritabanı şeması tasarlandı; önbellekleme ve rate limiting için Redis entegre edildi.\n• GitHub Actions ile otomatik CI/CD süreçleri kuruldu ve uygulama Docker ile konteynerleştirildi.",
     descriptionEn:
       "• Built a personal developer portfolio from scratch using Next.js, TypeScript, and React Server Components.\n• Designed a relational PostgreSQL schema with Drizzle ORM and integrated Redis for caching and rate limiting.\n• Implemented automated CI/CD workflows with GitHub Actions and containerized the application with Docker.",
-    techStack: ["Next.js", "TypeScript", "PostgreSQL", "Drizzle ORM", "Redis", "Docker", "GitHub Actions"],
+    techStack: [
+      "Next.js",
+      "TypeScript",
+      "PostgreSQL",
+      "Drizzle ORM",
+      "Redis",
+      "Docker",
+      "GitHub Actions",
+    ],
     githubUrl: "https://github.com/eryilmazyasin/portfolio-app",
     liveUrl: "https://yasineryilmaz.com",
     imageUrl: null,
@@ -152,7 +406,7 @@ const projectSeed = [
     isFeatured: true,
     order: 4,
   },
-] satisfies ProjectInsert[]
+] satisfies ProjectInsert[];
 
 const experienceSeed = [
   {
@@ -183,7 +437,7 @@ const experienceSeed = [
     descriptionEn:
       "• Contributed to Metance with React.js by delivering new features, resolving complex bugs, and improving UI/UX states.\n• Built and optimized the Metance landing page with Next.js to improve page-load performance and maintainability.\n• Managed state and data flow with TypeScript, TanStack Query, and Context API; integrated SignalR/WebSockets for real-time streaming and instant updates.\n• Integrated AI tools and DevOps workflows with Docker and SonarQube to improve code quality and local build reliability.",
     startDate: "08/2021",
-    endDate: "08/2026",
+    endDate: "09/2026",
     isCurrent: false,
     order: 2,
   },
@@ -219,30 +473,30 @@ const experienceSeed = [
     isCurrent: false,
     order: 4,
   },
-] satisfies ExperienceInsert[]
+] satisfies ExperienceInsert[];
 
 async function main() {
-  console.log("Starting database seeding...")
+  console.log("Starting database seeding...");
 
   // Tüm portfolyo verisi tek transaction içinde yenilenir; herhangi bir hata eski veriyi koruyacak şekilde rollback oluşturur.
   await db.transaction(async (transaction) => {
-    console.log("Cleaning existing portfolio records...")
-    await transaction.delete(projects)
-    await transaction.delete(experiences)
-    await transaction.delete(skills)
+    console.log("Cleaning existing portfolio records...");
+    await transaction.delete(projects);
+    await transaction.delete(experiences);
+    await transaction.delete(skills);
 
     // İletişim mesajları kullanıcı verisi olduğu için seed sırasında bilinçli olarak silinmez.
-    console.log("Inserting portfolio data...")
-    await transaction.insert(skills).values(skillSeed)
-    await transaction.insert(projects).values(projectSeed)
-    await transaction.insert(experiences).values(experienceSeed)
-  })
+    console.log("Inserting portfolio data...");
+    await transaction.insert(skills).values(skillSeed);
+    await transaction.insert(projects).values(projectSeed);
+    await transaction.insert(experiences).values(experienceSeed);
+  });
 
-  console.log("Database seeding completed successfully.")
-  process.exit(0)
+  console.log("Database seeding completed successfully.");
+  process.exit(0);
 }
 
 main().catch((error) => {
-  console.error("An error occurred during database seeding:", error)
-  process.exit(1)
-})
+  console.error("An error occurred during database seeding:", error);
+  process.exit(1);
+});
