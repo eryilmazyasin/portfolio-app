@@ -1,0 +1,329 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e4]:
+        - button "Go to the home section" [ref=e5] [cursor=pointer]:
+          - generic [ref=e6]: YE
+          - generic [ref=e7]:
+            - generic [ref=e8]: Yasin Eryılmaz
+            - generic [ref=e9]: Frontend · Full Stack
+        - navigation "Main navigation" [ref=e10]:
+          - button "Skills" [ref=e11] [cursor=pointer]
+          - button "Experience" [ref=e12] [cursor=pointer]
+          - button "Projects" [ref=e13] [cursor=pointer]
+        - generic [ref=e14]:
+          - button "Get in touch" [ref=e15] [cursor=pointer]
+          - button "Switch language to TR" [ref=e16] [cursor=pointer]: TR
+          - button "Toggle color theme" [ref=e17] [cursor=pointer]
+    - main [ref=e18]:
+      - region [ref=e19]:
+        - generic [ref=e22]:
+          - generic [ref=e23]:
+            - generic [ref=e24]: Available for new projects & roles
+            - heading "Building modern web applications with 7+ years of experience." [level=1] [ref=e28]
+            - generic [ref=e29]:
+              - paragraph [ref=e30]: Frontend Developer focused on building clean, fast, and scalable web interfaces with React.js and Next.js. Experienced in the full development lifecycle—from frontend architecture to backend integration (Node.js, PostgreSQL) and containerization with Docker.
+              - generic [ref=e31]:
+                - button "Explore Projects" [ref=e32] [cursor=pointer]
+                - button "My Skills" [ref=e36] [cursor=pointer]
+          - generic [ref=e41]:
+            - generic [ref=e42]: Istanbul, Turkey
+            - button "Scroll to the next section" [ref=e43] [cursor=pointer]: Explore
+      - region [ref=e46]:
+        - generic [ref=e47]:
+          - generic [ref=e48]:
+            - generic [ref=e49]:
+              - paragraph [ref=e50]: Areas of Expertise
+              - heading "Skills" [level=2] [ref=e51]
+            - paragraph [ref=e52]: The technology stack I use across the entire product lifecycle, from modern frontend architectures to backend services and production infrastructure.
+          - generic [ref=e53]:
+            - article [ref=e54]:
+              - heading "Frontend" [level=3] [ref=e59]
+              - paragraph [ref=e60]: Fast, accessible, and scalable product interfaces.
+              - generic [ref=e61]:
+                - generic [ref=e62]: React.js
+                - generic [ref=e63]: Next.js
+                - generic [ref=e64]: TypeScript
+                - generic [ref=e65]: JavaScript (ES6+)
+                - generic [ref=e66]: HTML5
+                - generic [ref=e67]: CSS3
+                - generic [ref=e68]: SCSS
+                - generic [ref=e69]: Redux
+                - generic [ref=e70]: TanStack Query
+                - generic [ref=e71]: Context API
+                - generic [ref=e72]: Zustand
+                - generic [ref=e73]: Tailwind CSS
+                - generic [ref=e74]: shadcn/ui
+                - generic [ref=e75]: Material UI (MUI)
+                - generic [ref=e76]: Bootstrap
+                - generic [ref=e77]: Emotion
+                - generic [ref=e78]: Styled-components
+                - generic [ref=e79]: Ant Design
+                - generic [ref=e80]: Vitest
+                - generic [ref=e81]: Playwright
+                - generic [ref=e82]: React Testing Library
+            - article [ref=e83]:
+              - heading "Backend & Data" [level=3] [ref=e90]
+              - paragraph [ref=e91]: Reliable services, relational data models, and scalable application architecture.
+              - generic [ref=e92]:
+                - generic [ref=e93]: Node.js
+                - generic [ref=e94]: Express.js
+                - generic [ref=e95]: Supabase
+                - generic [ref=e96]: PHP
+                - generic [ref=e97]: PostgreSQL
+                - generic [ref=e98]: MySQL
+                - generic [ref=e99]: SQL
+                - generic [ref=e100]: Drizzle ORM
+                - generic [ref=e101]: Redis (Upstash)
+                - generic [ref=e102]: REST APIs
+                - generic [ref=e103]: Integration Testing
+                - generic [ref=e104]: Database Management
+            - article [ref=e105]:
+              - heading "DevOps & Cloud" [level=3] [ref=e112]
+              - paragraph [ref=e113]: Containerized infrastructure, cloud platforms, and automated delivery pipelines.
+              - generic [ref=e114]:
+                - generic [ref=e115]: AWS
+                - generic [ref=e116]: DigitalOcean
+                - generic [ref=e117]: VPS Deployment
+                - generic [ref=e118]: Nginx
+                - generic [ref=e119]: Linux Server Environments
+                - generic [ref=e120]: Vercel
+                - generic [ref=e121]: Railway
+                - generic [ref=e122]: Netlify
+                - generic [ref=e123]: Docker
+                - generic [ref=e124]: GitHub Actions
+                - generic [ref=e125]: GitLab CI/CD
+            - article [ref=e126]:
+              - heading "Tooling" [level=3] [ref=e131]
+              - paragraph [ref=e132]: Build systems, code-quality workflows, and design collaboration tools.
+              - generic [ref=e133]:
+                - generic [ref=e134]: Webpack
+                - generic [ref=e135]: Babel
+                - generic [ref=e136]: Git
+                - generic [ref=e137]: SonarQube
+                - generic [ref=e138]: Figma
+                - generic [ref=e139]: Zeplin
+                - generic [ref=e140]: Adobe XD
+                - generic [ref=e141]: Adobe Photoshop
+      - region [ref=e142]:
+        - generic [ref=e143]:
+          - generic [ref=e144]:
+            - paragraph [ref=e145]: Career Journey
+            - heading "Experience" [level=2] [ref=e146]
+            - paragraph [ref=e147]: 7+ years of experience across product development, e-commerce, and enterprise projects, from ideation to production delivery.
+          - list [ref=e148]:
+            - listitem [ref=e149]:
+              - generic [ref=e151]:
+                - generic [ref=e152]:
+                  - generic [ref=e153]:
+                    - generic [ref=e154]: Hotel Management Automation
+                    - generic [ref=e159]: Full-Stack Developer
+                  - generic [ref=e160]: 2023 — Present
+                - generic [ref=e161]:
+                  - generic [ref=e162]:
+                    - paragraph [ref=e166]: Built a custom hotel management and reservation system from scratch using React.js, TypeScript, and Node.js.
+                    - paragraph [ref=e170]: Managed user authentication with Context API and optimized data fetching with TanStack Query and Axios.
+                    - paragraph [ref=e174]: Designed a relational MySQL database for room and booking states and deployed the application to a private server.
+                  - generic [ref=e175]:
+                    - generic [ref=e176]:
+                      - generic [ref=e177]: React.js
+                      - generic [ref=e178]: TypeScript
+                      - generic [ref=e179]: Node.js
+                      - generic [ref=e180]: TanStack Query
+                      - generic [ref=e181]: Axios
+                      - generic [ref=e182]: MySQL
+                    - generic [ref=e183]:
+                      - generic [ref=e184]: Istanbul, Türkiye
+                      - generic [ref=e185]: Freelance / Remote
+              - generic [ref=e186]: Experience 1
+            - listitem [ref=e187]:
+              - generic [ref=e189]:
+                - generic [ref=e190]:
+                  - generic [ref=e191]:
+                    - generic [ref=e192]: Metus
+                    - generic [ref=e197]: Frontend Developer
+                  - generic [ref=e198]: 08/2021 — 09/2026
+                - generic [ref=e199]:
+                  - generic [ref=e200]:
+                    - paragraph [ref=e204]: Contributed to Metance with React.js by delivering new features, resolving complex bugs, and improving UI/UX states.
+                    - paragraph [ref=e208]: Built and optimized the Metance landing page with Next.js to improve page-load performance and maintainability.
+                    - paragraph [ref=e212]: Managed state and data flow with TypeScript, TanStack Query, and Context API; integrated SignalR/WebSockets for real-time streaming and instant updates.
+                    - paragraph [ref=e216]: Integrated AI tools and DevOps workflows with Docker and SonarQube to improve code quality and local build reliability.
+                  - generic [ref=e217]:
+                    - generic [ref=e218]:
+                      - generic [ref=e219]: React.js
+                      - generic [ref=e220]: Next.js
+                      - generic [ref=e221]: TypeScript
+                      - generic [ref=e222]: TanStack Query
+                      - generic [ref=e223]: SignalR
+                      - generic [ref=e224]: Docker
+                      - generic [ref=e225]: SonarQube
+                    - generic [ref=e226]:
+                      - generic [ref=e227]: Istanbul, Türkiye
+                      - generic [ref=e228]: Full-time
+              - generic [ref=e229]: Experience 2
+            - listitem [ref=e230]:
+              - generic [ref=e232]:
+                - generic [ref=e233]:
+                  - generic [ref=e234]:
+                    - link "Akinon" [ref=e240] [cursor=pointer]:
+                      - /url: https://akinon.com
+                    - generic [ref=e241]: Frontend Developer
+                  - generic [ref=e242]: 09/2020 — 08/2021
+                - generic [ref=e243]:
+                  - generic [ref=e244]:
+                    - paragraph [ref=e248]: Implemented frontend enhancements and bug fixes for high-traffic e-commerce brands including Vakko, A101, English Home, and DS Damat.
+                    - paragraph [ref=e252]: Developed responsive UI components with JavaScript, HTML, CSS, and SCSS and integrated frontend layouts with Python/Jinja backend templates.
+                    - paragraph [ref=e256]: Resolved cross-browser compatibility issues and optimized web performance across large-scale e-commerce systems.
+                  - generic [ref=e257]:
+                    - generic [ref=e258]:
+                      - generic [ref=e259]: JavaScript
+                      - generic [ref=e260]: HTML5
+                      - generic [ref=e261]: CSS3
+                      - generic [ref=e262]: SCSS
+                      - generic [ref=e263]: Python / Jinja
+                    - generic [ref=e264]:
+                      - generic [ref=e265]: Istanbul, Türkiye
+                      - generic [ref=e266]: Full-time
+              - generic [ref=e267]: Experience 3
+            - listitem [ref=e268]:
+              - generic [ref=e270]:
+                - generic [ref=e271]:
+                  - generic [ref=e272]:
+                    - generic [ref=e273]: Detroit Digital
+                    - generic [ref=e278]: Frontend Developer
+                  - generic [ref=e279]: 04/2019 — 07/2020
+                - generic [ref=e280]:
+                  - generic [ref=e281]:
+                    - paragraph [ref=e285]: Developed and launched corporate and e-commerce websites from scratch with pixel-perfect, responsive implementations.
+                    - paragraph [ref=e289]: Managed deployments and ongoing maintenance for multiple client projects using HTML, CSS, JavaScript, PHP, Laravel, and WordPress.
+                  - generic [ref=e290]:
+                    - generic [ref=e291]:
+                      - generic [ref=e292]: HTML5
+                      - generic [ref=e293]: CSS3
+                      - generic [ref=e294]: JavaScript
+                      - generic [ref=e295]: PHP
+                      - generic [ref=e296]: Laravel
+                      - generic [ref=e297]: WordPress
+                    - generic [ref=e298]:
+                      - generic [ref=e299]: Istanbul, Türkiye
+                      - generic [ref=e300]: Full-time
+              - generic [ref=e301]: Experience 4
+      - region [ref=e302]:
+        - generic [ref=e303]:
+          - generic [ref=e305]:
+            - paragraph [ref=e306]: Featured Works
+            - heading "Projects" [level=2] [ref=e307]
+          - generic [ref=e308]:
+            - generic [ref=e309]:
+              - generic [ref=e310]:
+                - generic [ref=e311]: "01"
+                - generic [ref=e318]:
+                  - generic [ref=e319]: Developer Portfolio & Platform
+                  - generic [ref=e320]: A personal developer platform built with Next.js, TypeScript, PostgreSQL, and Drizzle ORM, supported by caching, CI/CD, and Docker infrastructure.
+              - generic [ref=e321]:
+                - generic [ref=e322]:
+                  - paragraph [ref=e326]: Built a personal developer portfolio from scratch using Next.js, TypeScript, and React Server Components.
+                  - paragraph [ref=e330]: Designed a relational PostgreSQL schema with Drizzle ORM and integrated Redis for caching and rate limiting.
+                  - paragraph [ref=e334]: Implemented automated CI/CD workflows with GitHub Actions and containerized the application with Docker.
+                - generic [ref=e336]:
+                  - paragraph [ref=e337]: Technology stack
+                  - generic [ref=e338]:
+                    - generic [ref=e339]: Next.js
+                    - generic [ref=e340]: TypeScript
+                    - generic [ref=e341]: PostgreSQL
+                    - generic [ref=e342]: Drizzle ORM
+                    - generic [ref=e343]: Redis
+                    - generic [ref=e344]: Docker
+                    - generic [ref=e345]: GitHub Actions
+              - generic [ref=e346]:
+                - button "View Developer Portfolio & Platform on GitHub" [ref=e347] [cursor=pointer]: GitHub
+                - button "Open the live demo for Developer Portfolio & Platform" [ref=e348] [cursor=pointer]: Live Demo
+            - generic [ref=e349]:
+              - generic [ref=e350]:
+                - generic [ref=e351]: "02"
+                - generic [ref=e358]:
+                  - generic [ref=e359]: EasyJot — Personal Finance Tracker
+                  - generic [ref=e360]: A full-stack personal finance tracker built with Next.js, Node.js, PostgreSQL, and Drizzle ORM using a multi-container Docker architecture.
+              - generic [ref=e361]:
+                - generic [ref=e362]:
+                  - paragraph [ref=e366]: Developed a full-stack personal finance and expense tracking application with a multi-container Docker architecture.
+                  - paragraph [ref=e370]: Designed relational PostgreSQL models with Drizzle ORM and configured reproducible local development environments.
+                - generic [ref=e372]:
+                  - paragraph [ref=e373]: Technology stack
+                  - generic [ref=e374]:
+                    - generic [ref=e375]: Next.js
+                    - generic [ref=e376]: Node.js
+                    - generic [ref=e377]: PostgreSQL
+                    - generic [ref=e378]: Drizzle ORM
+                    - generic [ref=e379]: Docker
+              - button "View EasyJot — Personal Finance Tracker on GitHub" [ref=e381] [cursor=pointer]: GitHub
+            - generic [ref=e382]:
+              - generic [ref=e383]:
+                - generic [ref=e384]: "03"
+                - generic [ref=e391]:
+                  - generic [ref=e392]: Sporcu Diyetisyenim
+                  - generic [ref=e393]: A WordPress-based corporate website presenting sports nutrition services, completed while working with Detroit Digital and Dimba.
+              - generic [ref=e394]:
+                - generic [ref=e395]:
+                  - paragraph [ref=e399]: Completed a corporate WordPress website presenting sports nutrition and dietitian services through an accessible content structure.
+                  - paragraph [ref=e403]: Delivered the project to production while working with Detroit Digital and Dimba.
+                - generic [ref=e405]:
+                  - paragraph [ref=e406]: Technology stack
+                  - generic [ref=e407]: WordPress
+              - button "Open the live demo for Sporcu Diyetisyenim" [ref=e410] [cursor=pointer]: Live Demo
+            - generic [ref=e411]:
+              - generic [ref=e412]:
+                - generic [ref=e413]: "04"
+                - generic [ref=e420]:
+                  - generic [ref=e421]: Gençoğlu Ergün Law Firm
+                  - generic [ref=e422]: A corporate law firm website completed with HTML, CSS, and JavaScript while working with Detroit Digital and Dimba.
+              - generic [ref=e423]:
+                - generic [ref=e424]:
+                  - paragraph [ref=e428]: Developed a responsive website presenting the law firm's services and corporate identity through a clear interface.
+                  - paragraph [ref=e432]: Completed the frontend implementation with HTML, CSS, and JavaScript while working with Detroit Digital and Dimba.
+                - generic [ref=e434]:
+                  - paragraph [ref=e435]: Technology stack
+                  - generic [ref=e436]:
+                    - generic [ref=e437]: HTML5
+                    - generic [ref=e438]: CSS3
+                    - generic [ref=e439]: JavaScript
+              - button "Open the live demo for Gençoğlu Ergün Law Firm" [ref=e441] [cursor=pointer]: Live Demo
+      - region [ref=e442]:
+        - generic [ref=e443]:
+          - generic [ref=e444]:
+            - paragraph [ref=e449]: Let's work together
+            - heading "Get in Touch" [level=2] [ref=e450]
+            - paragraph [ref=e451]: Share your project—whether it is a new product, scaling an existing system, or a technical collaboration. I will get back to you as soon as possible.
+            - generic [ref=e452]:
+              - link "yasineryilmazfb@gmail.com" [ref=e453] [cursor=pointer]:
+                - /url: mailto:yasineryilmazfb@gmail.com
+              - button "Copy" [ref=e457] [cursor=pointer]
+            - generic [ref=e458]:
+              - generic [ref=e459]:
+                - generic [ref=e460]:
+                  - text: Name
+                  - textbox "Name" [ref=e461]:
+                    - /placeholder: Your full name
+                - generic [ref=e462]:
+                  - text: Email
+                  - textbox "Email" [ref=e463]:
+                    - /placeholder: you@example.com
+              - generic [ref=e464]:
+                - text: Subject
+                - textbox "Subject" [ref=e465]:
+                  - /placeholder: What would you like to discuss?
+              - generic [ref=e466]:
+                - text: Message
+                - textbox "Message" [ref=e467]:
+                  - /placeholder: Tell me about your project and how we can work together.
+              - button "Send Message" [ref=e468] [cursor=pointer]
+          - generic [ref=e469]:
+            - paragraph [ref=e470]: © 2026 Yasin Eryılmaz. All rights reserved.
+            - navigation "Social media links" [ref=e471]:
+              - link "GitHub" [ref=e472] [cursor=pointer]:
+                - /url: https://github.com/eryilmazyasin
+              - link "LinkedIn" [ref=e481] [cursor=pointer]:
+                - /url: https://www.linkedin.com/in/eryilmazyasin/
+            - button "Back to top" [ref=e489]
+  - button "Open Next.js Dev Tools" [ref=e495] [cursor=pointer]

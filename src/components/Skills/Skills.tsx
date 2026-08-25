@@ -20,19 +20,17 @@ export function Skills({ skills }: SkillsProps) {
       id="skills"
     >
       <div className="mx-auto max-w-6xl">
-        <div className="grid gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
-              {t("sectionTitle")}
-            </p>
-            <h2
-              className="mt-4 text-4xl font-semibold tracking-[-0.045em] text-slate-950 dark:text-white sm:text-5xl"
-              id="skills-title"
-            >
-              {t("title")}
-            </h2>
-          </div>
-          <p className="max-w-2xl text-pretty text-base leading-7 text-slate-600 dark:text-slate-400 lg:justify-self-end">
+        <div className="max-w-2xl">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
+            {t("sectionTitle")}
+          </p>
+          <h2
+            className="mt-4 text-4xl font-semibold tracking-[-0.045em] text-slate-950 dark:text-white sm:text-5xl"
+            id="skills-title"
+          >
+            {t("title")}
+          </h2>
+          <p className="mt-5 text-pretty text-base leading-7 text-slate-600 dark:text-slate-400">
             {t("description")}
           </p>
         </div>

@@ -1,4 +1,3 @@
-import { Suspense } from "react"
 import { ArrowDown, ArrowUpRight, Code2 } from "lucide-react"
 import { useTranslations } from "next-intl"
 
@@ -27,14 +26,6 @@ export function Hero() {
 
       <div className="mx-auto w-full max-w-6xl">
         <div className="max-w-5xl">
-          <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-slate-200/80 bg-white/75 px-3 py-1.5 text-xs font-medium text-slate-600 shadow-sm backdrop-blur-xl dark:border-white/10 dark:bg-slate-900/75 dark:text-slate-300 sm:text-sm">
-            <span className="relative flex size-2">
-              <span className="absolute inline-flex size-full animate-ping rounded-full bg-emerald-400 opacity-60 motion-reduce:animate-none" />
-              <span className="relative inline-flex size-2 rounded-full bg-emerald-500" />
-            </span>
-            {t("badge")}
-          </div>
-
           <h1
             className="max-w-5xl text-balance font-sans text-5xl font-semibold leading-[0.96] tracking-[-0.06em] text-slate-950 dark:text-white sm:text-7xl lg:text-[6rem] lg:leading-[0.94]"
             id="hero-title"
@@ -68,10 +59,8 @@ export function Hero() {
             </div>
           </div>
 
-          {/* GitHub GraphQL isteği ayrı aktığı için Hero metni uzak API yanıtını beklemeden görüntülenebilir. */}
-          <Suspense fallback={null}>
-            <LiveStatusBadge />
-          </Suspense>
+          {/* Next server cache, locale geçişlerinde badge verisini uzak servise yeniden gitmeden paylaşır. */}
+          <LiveStatusBadge />
         </div>
 
         <div className="mt-16 flex items-center justify-between border-t border-slate-200/80 pt-5 text-xs font-medium uppercase tracking-[0.16em] text-slate-400 dark:border-white/10 dark:text-slate-500 sm:mt-24">

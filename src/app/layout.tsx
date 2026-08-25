@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import './globals.css';
 
 import { ThemeProvider } from '@/providers/ThemeProvider';
-import { NextIntlClientProvider } from 'next-intl';
-import { getLocale, getMessages } from 'next-intl/server';
+import { getLocale } from 'next-intl/server';
 import { Geist, Geist_Mono } from 'next/font/google';
 
 import { getYearsOfExperience } from '@/lib/experience';
@@ -34,8 +33,6 @@ export default async function RootLayout({
 }>) {
   // Sunucu tarafında cookie'den dili ve json mesajlarını çekiyoruz
   const locale = await getLocale();
-  const messages = await getMessages();
-
   return (
     <html
       lang={locale}
@@ -46,16 +43,14 @@ export default async function RootLayout({
         className="min-h-full flex flex-col bg-background text-foreground"
         suppressHydrationWarning
       >
-        <NextIntlClientProvider messages={messages}>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="dark"
-            enableSystem
-            disableTransitionOnChange
-          >
-            {children}
-          </ThemeProvider>
-        </NextIntlClientProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

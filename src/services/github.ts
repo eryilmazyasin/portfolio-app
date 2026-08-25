@@ -1,4 +1,5 @@
 import { Redis } from '@upstash/redis';
+import { unstable_cache } from 'next/cache';
 
 // Vercel / Upstash REST istemcisi (Serverless ortamlar için en stabil yöntem)
 const redis =
@@ -105,7 +106,7 @@ export async function getGithubProfile(): Promise<GitHubProfile | null> {
   }
 }
 
-export async function getGithubActivitySummary(): Promise<GitHubActivitySummary | null> {
+async function fetchGithubActivitySummary(): Promise<GitHubActivitySummary | null> {
   const cacheKey = "github_account_activity_summary";
 
   // Redis katmanı GitHub API çağrısını azaltır ve serverless instance'lar arasında ortak bir saatlik cache sağlar.
@@ -188,3 +189,24 @@ export async function getGithubActivitySummary(): Promise<GitHubActivitySummary 
     return null;
   }
 }
+
+async function fetchCacheableGithubActivitySummary(): Promise<GitHubActivitySummary> {
+  const activity = await fetchGithubActivitySummary();
+
+  // Geçici API veya ağ hataları null sonucunun bir saat boyunca cache'te kalmasına neden olmamalıdır.
+  if (!activity) {
+    throw new Error("GitHub activity summary is unavailable.");
+  }
+
+  return activity;
+}
+
+export const getGithubActivitySummary = unstable_cache(
+  fetchCacheableGithubActivitySummary,
+  ["github-account-activity-summary"],
+  {
+    // Next cache hit durumunda locale geçişi Upstash ağ isteğini dahi beklemeden aynı hesap özetini kullanır.
+    revalidate: 3600,
+    tags: ["github-activity-summary"],
+  }
+);
