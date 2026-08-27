@@ -13,6 +13,10 @@ export function HeroGrid() {
 
     if (!grid || !hero) return
 
+    // Callback'ler yalnızca doğrulanmış element referanslarını kullanır.
+    const activeGrid = grid
+    const activeHero = hero
+
     const supportsHover = window.matchMedia(
       "(hover: hover) and (pointer: fine)"
     ).matches
@@ -25,22 +29,22 @@ export function HeroGrid() {
     function updateGridPosition() {
       if (!latestPointerEvent) return
 
-      const bounds = hero.getBoundingClientRect()
+      const bounds = activeHero.getBoundingClientRect()
       const x = latestPointerEvent.clientX - bounds.left
       const y = latestPointerEvent.clientY - bounds.top
       const isInside =
         x >= 0 && x <= bounds.width && y >= 0 && y <= bounds.height
 
-      grid.dataset.active = String(isInside)
+      activeGrid.dataset.active = String(isInside)
 
       if (isInside) {
-        grid.style.setProperty("--pointer-x", `${x}px`)
-        grid.style.setProperty("--pointer-y", `${y}px`)
-        grid.style.setProperty(
+        activeGrid.style.setProperty("--pointer-x", `${x}px`)
+        activeGrid.style.setProperty("--pointer-y", `${y}px`)
+        activeGrid.style.setProperty(
           "--grid-x",
           `${Math.round(x / GRID_SIZE) * GRID_SIZE}px`
         )
-        grid.style.setProperty(
+        activeGrid.style.setProperty(
           "--grid-y",
           `${Math.round(y / GRID_SIZE) * GRID_SIZE}px`
         )
@@ -59,7 +63,7 @@ export function HeroGrid() {
     }
 
     function handlePointerLeave() {
-      grid.dataset.active = "false"
+      activeGrid.dataset.active = "false"
     }
 
     window.addEventListener("pointermove", handlePointerMove, { passive: true })
