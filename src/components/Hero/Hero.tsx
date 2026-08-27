@@ -2,6 +2,7 @@ import { ArrowDown, ArrowUpRight, Code2 } from "lucide-react"
 import { useTranslations } from "next-intl"
 
 import { LiveStatusBadge } from "@/components/home/LiveStatusBadge"
+import { HeroGrid } from "@/components/Hero/HeroGrid"
 import { ScrollToSection } from "@/components/ScrollToSection/ScrollToSection"
 import { getYearsOfExperience } from "@/lib/experience"
 
@@ -15,10 +16,7 @@ export function Hero() {
       className="relative isolate flex min-h-svh items-center overflow-hidden px-4 pb-16 pt-32 font-sans sm:px-6 sm:pt-36 lg:px-8"
       id="top"
     >
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 -z-20 bg-[linear-gradient(to_right,rgba(148,163,184,0.10)_1px,transparent_1px),linear-gradient(to_bottom,rgba(148,163,184,0.10)_1px,transparent_1px)] bg-[size:48px_48px] [mask-image:linear-gradient(to_bottom,black,transparent_85%)]"
-      />
+      <HeroGrid />
       <div
         aria-hidden="true"
         className="absolute left-1/2 top-0 -z-10 h-[36rem] w-[52rem] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(148,163,184,0.22),transparent_68%)] blur-2xl"

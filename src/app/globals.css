@@ -129,3 +129,97 @@
     scroll-padding-top: 6rem;
   }
 }
+
+@layer components {
+  .hero-grid {
+    --grid-x: 50%;
+    --grid-y: 50%;
+    --pointer-x: 50%;
+    --pointer-y: 50%;
+    mask-image: linear-gradient(to bottom, black, transparent 85%);
+  }
+
+  .hero-grid__base,
+  .hero-grid__spotlight {
+    background-image:
+      linear-gradient(to right, rgb(148 163 184 / 10%) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(148 163 184 / 10%) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  .hero-grid__glow,
+  .hero-grid__spotlight,
+  .hero-grid__intersection {
+    opacity: 0;
+    transition: opacity 240ms ease;
+  }
+
+  .hero-grid__glow {
+    background: radial-gradient(
+      320px circle at var(--pointer-x) var(--pointer-y),
+      rgb(99 102 241 / 10%),
+      transparent 72%
+    );
+  }
+
+  .hero-grid__spotlight {
+    background-image:
+      linear-gradient(to right, rgb(99 102 241 / 55%) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(99 102 241 / 55%) 1px, transparent 1px);
+    mask-image: radial-gradient(
+      190px circle at var(--pointer-x) var(--pointer-y),
+      black,
+      transparent 78%
+    );
+  }
+
+  .hero-grid__intersection {
+    left: var(--grid-x);
+    top: var(--grid-y);
+    width: 7px;
+    height: 7px;
+    border: 1px solid rgb(99 102 241 / 75%);
+    border-radius: 9999px;
+    background: rgb(255 255 255 / 90%);
+    box-shadow:
+      0 0 0 4px rgb(99 102 241 / 10%),
+      0 0 18px rgb(99 102 241 / 55%);
+    transform: translate(-50%, -50%);
+  }
+
+  .hero-grid[data-active="true"] .hero-grid__glow,
+  .hero-grid[data-active="true"] .hero-grid__spotlight,
+  .hero-grid[data-active="true"] .hero-grid__intersection {
+    opacity: 1;
+  }
+
+  .dark .hero-grid__glow {
+    background: radial-gradient(
+      320px circle at var(--pointer-x) var(--pointer-y),
+      rgb(129 140 248 / 13%),
+      transparent 72%
+    );
+  }
+
+  .dark .hero-grid__spotlight {
+    background-image:
+      linear-gradient(to right, rgb(129 140 248 / 65%) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(129 140 248 / 65%) 1px, transparent 1px);
+  }
+
+  .dark .hero-grid__intersection {
+    border-color: rgb(165 180 252 / 85%);
+    background: rgb(224 231 255 / 95%);
+    box-shadow:
+      0 0 0 4px rgb(129 140 248 / 12%),
+      0 0 20px rgb(129 140 248 / 70%);
+  }
+
+  @media (hover: none), (pointer: coarse) {
+    .hero-grid__glow,
+    .hero-grid__spotlight,
+    .hero-grid__intersection {
+      display: none;
+    }
+  }
+}
