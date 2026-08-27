@@ -24,7 +24,7 @@ export function Projects({ locale, projects }: ProjectsProps) {
     >
       <div className="mx-auto max-w-6xl">
         <div>
-          <div>
+          <div data-scroll-reveal>
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
               {t("sectionTitle")}
             </p>
@@ -54,9 +54,9 @@ export function Projects({ locale, projects }: ProjectsProps) {
               .filter(Boolean)
 
             return (
+            <div className="flex" data-scroll-reveal key={project.slug}>
             <Card
-              className="group gap-0 rounded-xl border border-zinc-200/80 bg-white/70 p-6 shadow-sm ring-0 backdrop-blur-sm transition-all duration-300 has-data-[slot=card-footer]:pb-6 hover:-translate-y-0.5 hover:border-sky-400/50 hover:shadow-lg hover:shadow-sky-500/10 dark:border-zinc-800/80 dark:bg-zinc-900/50 dark:shadow-[0_8px_28px_rgba(0,0,0,0.18)] dark:hover:border-sky-500/40 dark:hover:shadow-sky-500/5 motion-reduce:transform-none motion-reduce:transition-none sm:p-7 sm:has-data-[slot=card-footer]:pb-7"
-              key={project.slug}
+              className="project-card group isolate flex-1 gap-0 overflow-hidden rounded-xl border border-zinc-200/80 bg-white/70 p-6 shadow-sm ring-0 backdrop-blur-sm transition-all duration-300 has-data-[slot=card-footer]:pb-6 hover:-translate-y-0.5 hover:border-sky-400/50 hover:shadow-lg hover:shadow-sky-500/10 dark:border-zinc-800/80 dark:bg-zinc-900/50 dark:shadow-[0_8px_28px_rgba(0,0,0,0.18)] dark:hover:border-sky-500/40 dark:hover:shadow-sky-500/5 motion-reduce:transform-none motion-reduce:transition-none sm:p-7 sm:has-data-[slot=card-footer]:pb-7"
             >
               <CardHeader className="gap-6 border-b border-zinc-200/70 p-0 pb-6 dark:border-zinc-800/80">
                 <div className="flex items-center justify-between">
@@ -152,6 +152,7 @@ export function Projects({ locale, projects }: ProjectsProps) {
                 </CardFooter>
               )}
             </Card>
+            </div>
             )
           })}
         </div>

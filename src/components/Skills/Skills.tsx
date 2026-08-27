@@ -20,7 +20,7 @@ export function Skills({ skills }: SkillsProps) {
       id="skills"
     >
       <div className="mx-auto max-w-6xl">
-        <div className="max-w-2xl">
+        <div className="max-w-2xl" data-scroll-reveal>
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
             {t("sectionTitle")}
           </p>
@@ -41,12 +41,12 @@ export function Skills({ skills }: SkillsProps) {
             const Icon = presentation?.icon ?? Boxes
 
             return (
+              <div data-scroll-reveal key={group.category}>
               <article
                 className={cn(
-                  "group/card relative overflow-hidden rounded-2xl border border-slate-200/80 bg-white/65 p-6 shadow-[0_1px_2px_rgba(15,23,42,0.03)] backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 dark:border-white/10 dark:bg-slate-950/55 dark:shadow-[0_8px_28px_rgba(0,0,0,0.18)] motion-reduce:transform-none sm:p-7",
+                  "group/card relative h-full overflow-hidden rounded-2xl border border-slate-200/80 bg-white/65 p-6 shadow-[0_1px_2px_rgba(15,23,42,0.03)] backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 dark:border-white/10 dark:bg-slate-950/55 dark:shadow-[0_8px_28px_rgba(0,0,0,0.18)] motion-reduce:transform-none sm:p-7",
                   presentation?.cardClassName
                 )}
-                key={group.category}
               >
                 <div
                   aria-hidden="true"
@@ -90,6 +90,7 @@ export function Skills({ skills }: SkillsProps) {
                   ))}
                 </div>
               </article>
+              </div>
             )
           })}
         </div>

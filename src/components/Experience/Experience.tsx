@@ -53,7 +53,7 @@ export function Experience({ experiences, locale }: ExperienceProps) {
       id="experience"
     >
       <div className="mx-auto max-w-6xl">
-        <div className="max-w-2xl">
+        <div className="max-w-2xl" data-scroll-reveal>
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
             {t("sectionTitle")}
           </p>
@@ -68,7 +68,12 @@ export function Experience({ experiences, locale }: ExperienceProps) {
           </p>
         </div>
 
-        <ol className="relative mt-14 space-y-5 before:absolute before:bottom-8 before:left-[0.4375rem] before:top-8 before:w-px before:bg-slate-200 dark:before:bg-white/10 sm:ml-2 sm:space-y-6">
+        <div className="experience-timeline relative mt-14 sm:ml-2">
+          <span
+            aria-hidden="true"
+            className="experience-timeline__progress absolute bottom-8 left-[0.4375rem] top-8 z-[1] w-px"
+          />
+        <ol className="relative space-y-5 before:absolute before:bottom-8 before:left-[0.4375rem] before:top-8 before:w-px before:bg-slate-200 dark:before:bg-white/10 sm:space-y-6">
           {experiences.map((experience, index) => {
             const role = locale === "tr" ? experience.roleTr : experience.roleEn
             const description =
@@ -96,8 +101,10 @@ export function Experience({ experiences, locale }: ExperienceProps) {
                     ? "size-3.5 animate-pulse bg-sky-400 ring-4 ring-sky-500/20 motion-reduce:animate-none"
                     : "size-3 border-2 border-zinc-400 bg-white dark:border-zinc-700 dark:bg-zinc-900"
                 )}
+                data-timeline-node
               />
 
+              <div data-scroll-reveal>
               <Card className="gap-0 rounded-2xl border border-zinc-200/80 bg-white py-0 shadow-[0_8px_32px_rgba(15,23,42,0.04)] ring-0 transition-all duration-200 hover:-translate-y-0.5 hover:border-zinc-300 hover:shadow-[0_14px_36px_rgba(15,23,42,0.07)] dark:border-zinc-800/80 dark:bg-zinc-900/60 dark:shadow-[0_12px_36px_rgba(0,0,0,0.2)] dark:hover:border-zinc-700/80 dark:hover:shadow-[0_16px_40px_rgba(0,0,0,0.28)] motion-reduce:transform-none">
                 <CardHeader className="gap-4 border-b border-zinc-200/70 p-6 dark:border-zinc-800/80 sm:grid-cols-[1fr_auto] sm:p-7">
                   <div>
@@ -167,6 +174,7 @@ export function Experience({ experiences, locale }: ExperienceProps) {
                   </div>
                 </CardContent>
               </Card>
+              </div>
 
               <span className="sr-only">
                 {t("itemLabel", { number: index + 1 })}
@@ -175,6 +183,7 @@ export function Experience({ experiences, locale }: ExperienceProps) {
             )
           })}
         </ol>
+        </div>
       </div>
     </section>
   )

@@ -223,3 +223,129 @@
     }
   }
 }
+
+@keyframes scroll-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(1.375rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes experience-timeline-progress {
+  from {
+    transform: scaleY(0);
+  }
+
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes experience-timeline-node {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgb(14 165 233 / 0%);
+    transform: scale(1);
+  }
+
+  45%,
+  60% {
+    box-shadow:
+      0 0 0 5px rgb(14 165 233 / 14%),
+      0 0 20px rgb(14 165 233 / 32%);
+    transform: scale(1.18);
+  }
+}
+
+.experience-timeline__progress {
+  display: none;
+  background: linear-gradient(to bottom, rgb(56 189 248), rgb(99 102 241));
+  box-shadow: 0 0 12px rgb(56 189 248 / 35%);
+  transform-origin: top;
+}
+
+.project-card::before {
+  position: absolute;
+  z-index: 20;
+  top: -35%;
+  bottom: -35%;
+  left: -42%;
+  width: 26%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgb(56 189 248 / 4%),
+    rgb(255 255 255 / 42%),
+    rgb(99 102 241 / 8%),
+    transparent
+  );
+  content: "";
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-140%) skewX(-14deg);
+  transition:
+    transform 720ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 180ms ease;
+}
+
+.project-card:hover::before {
+  opacity: 1;
+  transform: translateX(620%) skewX(-14deg);
+}
+
+.dark .project-card::before {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgb(56 189 248 / 5%),
+    rgb(186 230 253 / 16%),
+    rgb(129 140 248 / 10%),
+    transparent
+  );
+}
+
+@supports (animation-timeline: view()) {
+  [data-scroll-reveal] {
+    animation: scroll-reveal 1ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-range: entry 0% cover 24%;
+    animation-timeline: view();
+  }
+
+  .experience-timeline {
+    view-timeline-axis: block;
+    view-timeline-name: --experience-timeline;
+  }
+
+  .experience-timeline__progress {
+    display: block;
+    animation: experience-timeline-progress 1ms linear both;
+    animation-range: entry 15% exit 72%;
+    animation-timeline: --experience-timeline;
+  }
+
+  [data-timeline-node] {
+    animation: experience-timeline-node 1ms ease-in-out both;
+    animation-range: entry 15% exit 85%;
+    animation-timeline: view();
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-scroll-reveal] {
+    animation: none;
+  }
+
+  .experience-timeline__progress,
+  [data-timeline-node] {
+    animation: none;
+  }
+
+  .project-card::before {
+    display: none;
+  }
+}

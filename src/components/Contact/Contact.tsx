@@ -28,7 +28,10 @@ export function Contact() {
       id="contact"
     >
       <div className="mx-auto max-w-6xl">
-        <div className="mx-auto max-w-2xl text-center">
+        <div
+          className="mx-auto max-w-2xl text-center"
+          data-scroll-reveal
+        >
           <div className="mx-auto grid size-12 place-items-center rounded-2xl border border-slate-200 bg-white text-slate-700 shadow-sm dark:border-white/10 dark:bg-slate-900 dark:text-slate-300">
             <Mail aria-hidden="true" className="size-5" />
           </div>
