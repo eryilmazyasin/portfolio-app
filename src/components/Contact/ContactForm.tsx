@@ -40,14 +40,14 @@ export function ContactForm() {
       <div className="grid gap-5 sm:grid-cols-2">
         <div className="space-y-2">
           <label
-            className="text-sm font-medium text-slate-700 dark:text-slate-300"
+            className="block text-sm font-medium text-slate-700 dark:text-slate-300"
             htmlFor="name"
           >
             {t("nameLabel")}
           </label>
           <Input
             autoComplete="name"
-            className="h-12 rounded-xl border-slate-200 bg-white px-4 shadow-sm transition-colors hover:border-slate-300 focus-visible:border-slate-400 focus-visible:ring-slate-200 dark:border-white/10 dark:bg-slate-900/70 dark:text-white dark:hover:border-white/20 dark:focus-visible:border-slate-600 dark:focus-visible:ring-slate-800"
+            className="h-12 rounded-lg border border-slate-300 bg-white px-4 shadow-sm transition-colors hover:border-slate-400 focus-visible:border-slate-500 dark:border-white/10 dark:bg-slate-900/70 dark:text-white dark:hover:border-white/20 dark:focus-visible:border-slate-600"
             id="name"
             maxLength={100}
             minLength={2}
@@ -59,14 +59,14 @@ export function ContactForm() {
 
         <div className="space-y-2">
           <label
-            className="text-sm font-medium text-slate-700 dark:text-slate-300"
+            className="block text-sm font-medium text-slate-700 dark:text-slate-300"
             htmlFor="email"
           >
             {t("emailLabel")}
           </label>
           <Input
             autoComplete="email"
-            className="h-12 rounded-xl border-slate-200 bg-white px-4 shadow-sm transition-colors hover:border-slate-300 focus-visible:border-slate-400 focus-visible:ring-slate-200 dark:border-white/10 dark:bg-slate-900/70 dark:text-white dark:hover:border-white/20 dark:focus-visible:border-slate-600 dark:focus-visible:ring-slate-800"
+            className="h-12 rounded-lg border border-slate-300 bg-white px-4 shadow-sm transition-colors hover:border-slate-400 focus-visible:border-slate-500 dark:border-white/10 dark:bg-slate-900/70 dark:text-white dark:hover:border-white/20 dark:focus-visible:border-slate-600"
             id="email"
             maxLength={254}
             name="email"
@@ -79,13 +79,13 @@ export function ContactForm() {
 
       <div className="space-y-2">
         <label
-          className="text-sm font-medium text-slate-700 dark:text-slate-300"
+          className="block text-sm font-medium text-slate-700 dark:text-slate-300"
           htmlFor="subject"
         >
           {t("subjectLabel")}
         </label>
         <Input
-          className="h-12 rounded-xl border-slate-200 bg-white px-4 shadow-sm transition-colors hover:border-slate-300 focus-visible:border-slate-400 focus-visible:ring-slate-200 dark:border-white/10 dark:bg-slate-900/70 dark:text-white dark:hover:border-white/20 dark:focus-visible:border-slate-600 dark:focus-visible:ring-slate-800"
+          className="h-12 rounded-lg border border-slate-300 bg-white px-4 shadow-sm transition-colors hover:border-slate-400 focus-visible:border-slate-500 dark:border-white/10 dark:bg-slate-900/70 dark:text-white dark:hover:border-white/20 dark:focus-visible:border-slate-600"
           id="subject"
           maxLength={160}
           minLength={3}
@@ -97,13 +97,13 @@ export function ContactForm() {
 
       <div className="space-y-2">
         <label
-          className="text-sm font-medium text-slate-700 dark:text-slate-300"
+          className="block text-sm font-medium text-slate-700 dark:text-slate-300"
           htmlFor="message"
         >
           {t("messageLabel")}
         </label>
         <Textarea
-          className="min-h-36 resize-y rounded-xl border-slate-200 bg-white px-4 py-3 shadow-sm transition-colors hover:border-slate-300 focus-visible:border-slate-400 focus-visible:ring-slate-200 dark:border-white/10 dark:bg-slate-900/70 dark:text-white dark:hover:border-white/20 dark:focus-visible:border-slate-600 dark:focus-visible:ring-slate-800"
+          className="min-h-36 resize-y rounded-lg border border-slate-300 bg-white px-4 py-3 shadow-sm transition-colors hover:border-slate-400 focus-visible:border-slate-500 dark:border-white/10 dark:bg-slate-900/70 dark:text-white dark:hover:border-white/20 dark:focus-visible:border-slate-600"
           id="message"
           maxLength={5000}
           minLength={10}
@@ -116,10 +116,10 @@ export function ContactForm() {
       {state && (
         <p
           aria-live="polite"
-          className={`flex items-center gap-2 rounded-xl border px-4 py-3 text-sm ${
+          className={`flex items-center gap-2 rounded-lg border px-4 py-3 text-sm ${
             state.success
-              ? "border-emerald-200 bg-emerald-50 text-emerald-700 dark:border-emerald-900 dark:bg-emerald-950/50 dark:text-emerald-300"
-              : "border-red-200 bg-red-50 text-red-700 dark:border-red-900 dark:bg-red-950/50 dark:text-red-300"
+              ? "border-emerald-500 bg-emerald-100 text-emerald-700 dark:border-emerald-600 dark:bg-emerald-900/20 dark:text-emerald-300"
+              : "border-red-500 bg-red-100 text-red-700 dark:border-red-600 dark:bg-red-900/20 dark:text-red-300"
           }`}
         >
           {state.success ? (
@@ -132,7 +132,7 @@ export function ContactForm() {
       )}
 
       <Button
-        className="h-12 w-full rounded-xl bg-slate-950 px-6 text-sm font-medium text-white shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-slate-800 hover:shadow-lg dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200 motion-reduce:transform-none"
+        className="h-12 w-full rounded-lg bg-slate-950 px-6 text-sm font-medium text-white shadow-md transition-all duration-300 hover:bg-slate-800 hover:shadow-lg dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200 motion-reduce:transform-none"
         disabled={isPending}
         type="submit"
       >
