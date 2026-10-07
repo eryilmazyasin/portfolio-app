@@ -6,7 +6,7 @@ import { useTranslations } from "next-intl"
 
 import { Button } from "@/components/ui/button"
 
-const CONTACT_EMAIL = "yasineryilmazfb@gmail.com"
+const CONTACT_EMAIL = "info@yasineryilmaz.com"
 
 export function EmailContact() {
   const t = useTranslations("Contact")
