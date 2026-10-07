@@ -47,7 +47,7 @@ export async function LiveStatusBadge() {
       </span>
       <span aria-hidden="true" className="h-4 w-px shrink-0 bg-slate-200 dark:bg-white/10" />
       <span className="inline-flex shrink-0 items-center gap-1.5 tabular-nums">
-        <Zap aria-hidden="true" className="size-3.5 text-amber-500" />
+        <Zap aria-hidden="true" className="size-3.5 text-[#53849a] dark:text-[#b9d4dd]" />
         {t("contributions", { count: activity.totalContributions })}
       </span>
       <span aria-hidden="true" className="hidden h-4 w-px shrink-0 bg-slate-200 dark:bg-white/10 md:block" />

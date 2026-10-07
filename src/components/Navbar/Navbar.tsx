@@ -10,14 +10,14 @@ export function Navbar() {
   const t = useTranslations("Navbar")
 
   return (
-    <header className="fixed inset-x-0 top-0 z-40 px-4 pt-4 sm:px-6 lg:px-8">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between rounded-2xl border border-white/70 bg-white/70 px-4 font-sans shadow-[0_8px_32px_rgba(15,23,42,0.06)] backdrop-blur-xl dark:border-white/10 dark:bg-slate-950/75 dark:shadow-[0_8px_32px_rgba(0,0,0,0.28)] sm:px-5">
+    <header className="fixed inset-x-0 top-0 z-40 border-b border-slate-200/80 bg-[#f8faf9]/95 px-4 backdrop-blur-lg dark:border-slate-800 dark:bg-[#101c22]/95 sm:px-6 lg:px-8">
+      <div className="mx-auto flex h-[4.5rem] max-w-6xl items-center justify-between gap-3 font-sans">
         <ScrollToSection
           aria-label={t("homeLabel")}
           className="group flex cursor-pointer items-center gap-3 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400"
           targetId="top"
         >
-          <span className="grid size-9 place-items-center rounded-xl bg-slate-950 text-sm font-semibold tracking-tight text-white transition-transform group-hover:-rotate-3 dark:bg-white dark:text-slate-950">
+          <span className="grid size-9 place-items-center rounded-lg bg-[#315f72] text-sm font-semibold tracking-tight text-white transition-transform group-hover:-rotate-3 dark:bg-[#b9d4dd] dark:text-[#17252b]">
             YE
           </span>
           <span className="hidden h-9 flex-col justify-center text-left sm:flex">
@@ -30,11 +30,11 @@ export function Navbar() {
           </span>
         </ScrollToSection>
 
-        <nav aria-label={t("mainNavigationLabel")} className="hidden items-center gap-1 md:flex">
+        <nav aria-label={t("mainNavigationLabel")} className="hidden items-center gap-1 lg:flex">
           {navigationItems.map((item) => (
             <ScrollToSection
               key={item.targetId}
-              className="cursor-pointer rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition-colors hover:bg-white/80 hover:text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 dark:text-slate-400 dark:hover:bg-white/10 dark:hover:text-white"
+              className="cursor-pointer rounded-lg px-2.5 py-2 text-sm font-medium text-slate-600 transition-colors hover:bg-[#e4eef1] hover:text-[#315f72] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#315f72] dark:text-slate-300 dark:hover:bg-[#25404d] dark:hover:text-[#d7e8ed]"
               targetId={item.targetId}
             >
               {t(item.key)}
@@ -44,7 +44,7 @@ export function Navbar() {
 
         <div className="flex items-center gap-2">
           <ScrollToSection
-            className="hidden h-9 cursor-pointer items-center justify-center rounded-xl bg-slate-950 px-4 text-sm font-medium text-white shadow-sm transition-colors hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-2 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200 dark:focus-visible:ring-offset-slate-950 md:inline-flex"
+            className="hidden h-9 cursor-pointer items-center justify-center whitespace-nowrap rounded-lg bg-[#315f72] px-4 text-sm font-medium text-white transition-colors hover:bg-[#254d5e] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#315f72] focus-visible:ring-offset-2 dark:bg-[#b9d4dd] dark:text-[#17252b] dark:hover:bg-[#d7e8ed] dark:focus-visible:ring-offset-[#101c22] lg:inline-flex"
             targetId="contact"
           >
             {t("contact")}

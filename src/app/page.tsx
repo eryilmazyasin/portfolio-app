@@ -17,7 +17,7 @@ export default async function Home() {
 
   return (
     <IntlProvider locale={activeLocale} messages={messages}>
-      <div className="min-h-svh bg-slate-50 text-slate-950 dark:bg-slate-950 dark:text-slate-50">
+      <div className="min-h-dvh bg-[#f8faf9] text-slate-950 dark:bg-[#101c22] dark:text-slate-50">
         <Navbar />
         <main>
           <Hero />

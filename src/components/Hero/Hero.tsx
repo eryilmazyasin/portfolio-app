@@ -1,8 +1,8 @@
-import { ArrowDown, ArrowUpRight, Code2 } from "lucide-react"
+import Image from "next/image"
+import { ArrowUpRight, Code2 } from "lucide-react"
 import { useTranslations } from "next-intl"
 
 import { LiveStatusBadge } from "@/components/home/LiveStatusBadge"
-import { HeroGrid } from "@/components/Hero/HeroGrid"
 import { ScrollToSection } from "@/components/ScrollToSection/ScrollToSection"
 import { getYearsOfExperience } from "@/lib/experience"
 
@@ -13,42 +13,41 @@ export function Hero() {
   return (
     <section
       aria-labelledby="hero-title"
-      className="relative isolate flex min-h-svh items-center overflow-hidden px-4 pb-16 pt-32 font-sans sm:px-6 sm:pt-36 lg:px-8"
+      className="relative overflow-hidden px-4 pb-16 pt-24 sm:px-6 sm:pt-32 lg:px-8"
       id="top"
     >
-      <HeroGrid />
-      <div
-        aria-hidden="true"
-        className="absolute left-1/2 top-0 -z-10 h-[36rem] w-[52rem] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(148,163,184,0.22),transparent_68%)] blur-2xl"
-      />
-
-      <div className="mx-auto w-full max-w-6xl">
-        <div className="max-w-5xl">
-          <h1
-            className="max-w-5xl text-balance font-sans text-5xl font-semibold leading-[0.96] tracking-[-0.06em] text-slate-950 dark:text-white sm:text-7xl lg:text-[6rem] lg:leading-[0.94]"
-            id="hero-title"
-          >
-            {t("title", { years: yearsOfExperience })}
-          </h1>
-
-          <div className="mt-10 grid gap-9 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
-            <p className="max-w-2xl text-pretty text-base font-normal leading-7 text-slate-600 dark:text-slate-400 sm:text-lg sm:leading-8">
+      <div className="mx-auto max-w-6xl">
+        <div className="relative grid min-h-[min(46rem,calc(100dvh-9rem))] overflow-hidden rounded-[1.4rem] bg-[#18242a] text-[#f4f7f7] md:items-center">
+          <Image
+            alt=""
+            className="absolute inset-0 h-full w-full object-cover object-[64%_center] opacity-45 md:object-center md:opacity-75"
+            fill
+            priority
+            sizes="(max-width: 768px) 100vw, 1152px"
+            src="/images/istanbul-workspace.jpg"
+          />
+          <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-[#18242a] via-[#18242a]/95 to-[#18242a]/40" />
+          <div className="relative px-6 py-10 sm:px-10 sm:py-16 lg:px-16">
+            <p className="mb-5 text-sm font-medium text-[#c8d8df] sm:mb-7">Yasin Eryılmaz / {t("location")}</p>
+            <h1
+              className="max-w-[40ch] text-balance text-[clamp(2.3rem,4vw,3.8rem)] font-semibold leading-[1.06] tracking-[-0.06em] text-[#f4f7f7]"
+              id="hero-title"
+            >
+              {t("title", { years: yearsOfExperience })}
+            </h1>
+            <p className="mt-5 max-w-[57ch] text-pretty text-sm leading-7 text-[#d6e0e4] sm:mt-7 sm:text-base">
               {t("description")}
             </p>
-
-            <div className="flex flex-col gap-3 sm:flex-row lg:justify-end">
+            <div className="mt-6 flex flex-wrap gap-3 sm:mt-8">
               <ScrollToSection
-                className="group inline-flex h-12 cursor-pointer items-center justify-center gap-2 rounded-xl bg-slate-950 px-5 text-sm font-medium text-white shadow-[0_10px_30px_rgba(15,23,42,0.18)] transition-all hover:-translate-y-0.5 hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-2 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200 dark:focus-visible:ring-offset-slate-950 motion-reduce:transform-none"
+                className="group inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-[#d7e8ed] px-5 text-sm font-semibold text-[#162b35] transition-transform hover:-translate-y-0.5 hover:bg-white active:translate-y-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white motion-reduce:transform-none"
                 targetId="projects"
               >
                 {t("ctaProjects")}
-                <ArrowUpRight
-                  aria-hidden="true"
-                  className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 motion-reduce:transform-none"
-                />
+                <ArrowUpRight aria-hidden="true" className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 motion-reduce:transform-none" />
               </ScrollToSection>
               <ScrollToSection
-                className="inline-flex h-12 cursor-pointer items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white/70 px-5 text-sm font-medium text-slate-700 shadow-sm backdrop-blur-xl transition-colors hover:border-slate-300 hover:bg-white hover:text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-2 dark:border-white/10 dark:bg-slate-900/70 dark:text-slate-300 dark:hover:border-white/20 dark:hover:bg-slate-800 dark:hover:text-white dark:focus-visible:ring-offset-slate-950"
+                className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 whitespace-nowrap rounded-lg border border-white/45 bg-[#18242a]/45 px-5 text-sm font-medium text-white transition-colors hover:bg-white/15 active:bg-white/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                 targetId="skills"
               >
                 <Code2 aria-hidden="true" className="size-4" />
@@ -56,22 +55,9 @@ export function Hero() {
               </ScrollToSection>
             </div>
           </div>
-
-          {/* Next server cache, locale geçişlerinde badge verisini uzak servise yeniden gitmeden paylaşır. */}
-          <LiveStatusBadge />
         </div>
-
-        <div className="mt-16 flex items-center justify-between border-t border-slate-200/80 pt-5 text-xs font-medium uppercase tracking-[0.16em] text-slate-400 dark:border-white/10 dark:text-slate-500 sm:mt-24">
-          <span>{t("location")}</span>
-          <ScrollToSection
-            aria-label={t("scrollLabel")}
-            className="flex cursor-pointer items-center gap-2 rounded-lg py-1 text-slate-500 transition-colors hover:text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 dark:text-slate-400 dark:hover:text-white"
-            targetId="skills"
-          >
-            {t("explore")}
-            <ArrowDown aria-hidden="true" className="size-4" />
-          </ScrollToSection>
-        </div>
+        {/* Next server cache, locale geçişlerinde badge verisini uzak servise yeniden gitmeden paylaşır. */}
+        <LiveStatusBadge />
       </div>
     </section>
   )

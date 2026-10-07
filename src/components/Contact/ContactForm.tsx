@@ -30,7 +30,7 @@ export function ContactForm() {
   return (
     <form
       action={formAction}
-      className="mt-12 space-y-5 text-left"
+      className="space-y-5 text-left"
       ref={formRef}
     >
       {/* Bot Tuzağı: Kullanıcı görmez, botlar doldurursa Action DB'ye kaydetmeden başarılı döner */}
@@ -132,7 +132,7 @@ export function ContactForm() {
       )}
 
       <Button
-        className="h-12 w-full rounded-lg bg-slate-950 px-6 text-sm font-medium text-white shadow-md transition-all duration-300 hover:bg-slate-800 hover:shadow-lg dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200 motion-reduce:transform-none"
+        className="h-12 w-full rounded-lg bg-[#315f72] px-6 text-sm font-semibold text-white transition-colors duration-200 hover:bg-[#254d5e] active:scale-[0.98] dark:bg-[#b9d4dd] dark:text-[#17252b] dark:hover:bg-[#d7e8ed] motion-reduce:transform-none"
         disabled={isPending}
         type="submit"
       >

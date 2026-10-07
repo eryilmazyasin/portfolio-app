@@ -25,7 +25,7 @@ export function MobileNavigation() {
         render={
           <Button
             aria-label={t("openMenu")}
-            className="rounded-full border-white/70 bg-white/70 text-slate-700 shadow-sm backdrop-blur-xl dark:border-white/10 dark:bg-slate-900/75 dark:text-slate-300 dark:hover:bg-slate-800 md:hidden"
+            className="rounded-lg border-slate-200 bg-white text-slate-700 dark:border-slate-700 dark:bg-[#17252b] dark:text-slate-200 dark:hover:bg-[#25404d] lg:hidden"
             size="icon-lg"
             variant="outline"
           />
@@ -46,7 +46,7 @@ export function MobileNavigation() {
           {navigationItems.map((item) => (
             <SheetClose
               key={item.targetId}
-              nativeButton={false}
+              nativeButton
               render={
                 <ScrollToSection
                   className="flex cursor-pointer items-center justify-between rounded-xl px-3 py-3 text-base font-medium text-slate-700 transition-colors hover:bg-slate-100 hover:text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 dark:text-slate-300 dark:hover:bg-white/10 dark:hover:text-white"
@@ -60,10 +60,10 @@ export function MobileNavigation() {
           ))}
 
           <SheetClose
-            nativeButton={false}
+            nativeButton
             render={
               <ScrollToSection
-                className="mt-3 inline-flex h-11 cursor-pointer items-center justify-center rounded-xl bg-slate-950 px-5 text-sm font-medium text-white transition-colors hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-2 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200 dark:focus-visible:ring-offset-slate-950"
+                className="mt-3 inline-flex h-11 cursor-pointer items-center justify-center rounded-lg bg-[#315f72] px-5 text-sm font-medium text-white transition-colors hover:bg-[#254d5e] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#315f72] focus-visible:ring-offset-2 dark:bg-[#b9d4dd] dark:text-[#17252b] dark:hover:bg-[#d7e8ed] dark:focus-visible:ring-offset-[#101c22]"
                 targetId="contact"
               />
             }
