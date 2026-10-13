@@ -406,6 +406,25 @@ const projectSeed = [
     isFeatured: true,
     order: 4,
   },
+  {
+    slug: "yildiz-emre",
+    titleTr: "Yıldız Emre — Kuyumcu Makinaları",
+    titleEn: "Yıldız Emre — Jewelry Machinery",
+    summaryTr:
+      "Kuyumcu makinaları satışı ve tamiri yapan bir müşteri için Next.js ile geliştirilen, GSAP ile kaydırmaya bağlı animasyonlar içeren kurumsal web sitesi.",
+    summaryEn:
+      "A corporate website built with Next.js for a client selling and repairing jewelry machinery, featuring scroll-driven animations developed with GSAP.",
+    descriptionTr:
+      "• Kuyumcu makinaları satışı ve tamir hizmetlerini tanıtan müşteri web sitesi Next.js ile geliştirildi.\n• GSAP kullanılarak sayfa kaydırmasına bağlı animasyonlar geliştirildi.",
+    descriptionEn:
+      "• Developed a client website with Next.js to present jewelry machinery sales and repair services.\n• Created scroll-driven animations using GSAP.",
+    techStack: ["Next.js", "GSAP"],
+    githubUrl: null,
+    liveUrl: "https://yildizemre.com/",
+    imageUrl: null,
+    isFeatured: true,
+    order: 5,
+  },
 ] satisfies ProjectInsert[];
 
 const experienceSeed = [
