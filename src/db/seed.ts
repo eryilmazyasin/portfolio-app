@@ -423,7 +423,7 @@ const projectSeed = [
     liveUrl: "https://yildizemre.com/",
     imageUrl: null,
     isFeatured: true,
-    order: 5,
+    order: 0,
   },
 ] satisfies ProjectInsert[];
 

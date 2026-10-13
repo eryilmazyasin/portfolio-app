@@ -1,4 +1,4 @@
-import { asc, eq } from "drizzle-orm"
+import { asc, desc, eq } from "drizzle-orm"
 import { unstable_cache } from "next/cache"
 
 import { db } from "@/db"
@@ -23,20 +23,21 @@ export async function getSkills(): Promise<PortfolioSkill[]> {
 export async function getProjects(
   featuredOnly = false
 ): Promise<PortfolioProject[]> {
+  // En yeni kayıt önce gelir; eşit oluşturulma tarihlerinde id sıralamayı kararlı tutar.
   if (featuredOnly) {
     // eq operatörü kolon ile değeri tip güvenli biçimde karşılaştırarak WHERE koşulunu oluşturur.
     return db
       .select()
       .from(projects)
       .where(eq(projects.isFeatured, true))
-      .orderBy(asc(projects.order), asc(projects.id))
+      .orderBy(desc(projects.createdAt), desc(projects.id))
   }
 
   // select().from() çağrısı şemadaki kolonlardan dönüş tipini otomatik olarak çıkarır.
   return db
     .select()
     .from(projects)
-    .orderBy(asc(projects.order), asc(projects.id))
+    .orderBy(desc(projects.createdAt), desc(projects.id))
 }
 
 export async function getProjectBySlug(
