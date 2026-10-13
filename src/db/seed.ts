@@ -408,8 +408,8 @@ const projectSeed = [
   },
   {
     slug: "yildiz-emre",
-    titleTr: "Yıldız Emre — Kuyumcu Makinaları",
-    titleEn: "Yıldız Emre — Jewelry Machinery",
+    titleTr: "Emre Makine — Kuyumcu Makinaları",
+    titleEn: "Emre Makine — Jewelry Machinery",
     summaryTr:
       "Kuyumcu makinaları satışı ve tamiri yapan bir müşteri için Next.js ile geliştirilen, GSAP ile kaydırmaya bağlı animasyonlar içeren kurumsal web sitesi.",
     summaryEn:
